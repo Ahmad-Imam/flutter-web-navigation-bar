@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nav/const.dart';
+import 'package:flutter_nav/test.dart';
 import 'package:get/get.dart';
 
 import 'home_page.dart';
@@ -13,12 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Navigation Bar',
-      theme: k_lightTheme,
-      darkTheme: k_darkTheme,
-      home: HomePage()
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Navigation Bar',
+        theme: k_lightTheme,
+        darkTheme: k_darkTheme,
+        home: HomePage());
+    // home: MyHomePage(title: 'Flutter Demo Home Page'));
   }
 }
-
