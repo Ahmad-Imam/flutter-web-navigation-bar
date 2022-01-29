@@ -17,6 +17,7 @@ class MenuDrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              ///home
               InkWell(
                 onTap: () {},
                 child: Text(
@@ -31,6 +32,52 @@ class MenuDrawer extends StatelessWidget {
                   thickness: 2,
                 ),
               ),
+              ///about
+              InkWell(
+                onTap: () {},
+                child: Text(
+                  'About',
+                  style: TextStyle(color: Colors.white, fontSize: 22),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+                child: Divider(
+                  color: Colors.blueGrey.shade400,
+                  thickness: 2,
+                ),
+              ),
+              ///contact
+              InkWell(
+                onTap: () {},
+                child: Text(
+                  'Contact',
+                  style: TextStyle(color: Colors.white, fontSize: 22),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+                child: Divider(
+                  color: Colors.blueGrey.shade400,
+                  thickness: 2,
+                ),
+              ),
+              ///profile
+              InkWell(
+                onTap: () {},
+                child: Text(
+                  'Profile',
+                  style: TextStyle(color: Colors.white, fontSize: 22),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+                child: Divider(
+                  color: Colors.blueGrey.shade400,
+                  thickness: 2,
+                ),
+              ),
+
               Expanded(
                 child: Align(
                   alignment: Alignment.bottomCenter,
