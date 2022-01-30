@@ -1,4 +1,3 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nav/LinePainter.dart';
@@ -8,7 +7,8 @@ import 'package:flutter_nav/responsive.dart';
 import 'package:flutter_nav/top_bar_contents.dart';
 import 'package:flutter_nav/widgets/button_elevated.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
+import 'model/project_model.dart';
 import 'package:get/get.dart';
 import 'package:hovering/hovering.dart';
 import 'widgets/progress_bar.dart';
@@ -32,11 +32,30 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     });
   }
 
+  Test tst = Test();
+
   @override
   void initState() {
+    tst.addtoList();
+
+    print('pp');
+    print(tst.lsts[0].pic[0]);
+
     _scrollController.addListener(_scrollListener);
-    animationController = AnimationController(vsync: this,duration: Duration(milliseconds: 2000));
-    anime = Tween<double>(begin: 0, end: 1).animate(animationController);
+    animationControllerLine1 = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 2000));
+    animationLine1 =
+        Tween<double>(begin: 0, end: 1).animate(animationControllerLine1);
+
+    animationControllerContainerLeft1 = AnimationController(
+        lowerBound: -0.5,
+        upperBound: 0.0,
+        vsync: this,
+        animationBehavior: AnimationBehavior.preserve,
+        duration: Duration(milliseconds: 2000));
+    animationContainerLeft1 =
+        Tween<double>(begin: 0, end: 1).animate(animationControllerLine1);
+
     super.initState();
   }
 
@@ -46,8 +65,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   bool scrollDown = false;
   bool expansion1 = false;
 
-  late AnimationController animationController;
-  late Animation anime;
+  late AnimationController animationControllerLine1;
+  late Animation animationLine1;
+
+  late AnimationController animationControllerContainerLeft1;
+  late Animation animationContainerLeft1;
 
   @override
   Widget build(BuildContext context) {
@@ -165,11 +187,92 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   //   ),
                   // ),
 
+                  ///portfolio
+                  Text('Portfolio'),
+
+                  Container(
+                    height: 400,
+                    width: 650,
+                    color: Colors.red,
+                    child: Swiper(
+                      autoplay: false,
+                      itemCount: 3,
+                      // loop: true,
+                      // layout: SwiperLayout.DEFAULT,
+                      scrollDirection: Axis.vertical,
+                      pagination: SwiperPagination(),
+                      control: SwiperControl(),
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index == 0)
+                          return Row(
+                            children: [
+                              Text('lol'),
+                              Container(
+                                height: 200,
+                                width: 450,
+                                child: Swiper(
+                                  indicatorLayout: PageIndicatorLayout.NONE,
+                                  autoplay: true,
+                                  itemCount: 3,
+                                  // loop: true,
+                                  // layout: SwiperLayout.DEFAULT,
+                                  scrollDirection: Axis.horizontal,
+                                  pagination: SwiperPagination(),
+                                  control: SwiperControl(),
+                                  containerHeight: 100,
+                                  containerWidth: 100,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    if (index == 0)
+                                      return Container(
+                                          width: 50,
+                                          height: 50,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(10),
+                                            ),
+                                          ),
+                                          child: Image.asset(
+                                            'assets/images/about.jpg',
+                                            fit: BoxFit.cover,
+                                          ));
+                                    if (index == 1)
+                                      return Container(
+                                          alignment: Alignment.center,
+                                          child: Text('lol2'));
+                                    if (index == 2)
+                                      return Container(
+                                          alignment: Alignment.center,
+                                          child: Text('lol3'));
+                                    return Text('pp');
+                                  },
+                                ),
+                              ),
+                            ],
+                          );
+                        if (index == 1)
+                          return Container(
+                              alignment: Alignment.center, child: Text('lol2'));
+                        if (index == 2)
+                          return Container(
+                              alignment: Alignment.center, child: Text('lol3'));
+                        return Text('pp');
+                      },
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 200,
+                  ),
+
                   ///qualification
                   Text('qualificatiom'),
                   InkWell(
                       onTap: () {
-                        animationController.forward();
+                        animationControllerLine1.forward();
+                        animationControllerContainerLeft1.forward();
+                        print(animationControllerContainerLeft1.value);
                       },
                       child: Text('journey')),
 
@@ -191,41 +294,62 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   // create widgets for each tab bar here
                   Container(
                     height: 300,
+                    // color: Colors.black87,
                     child: TabBarView(
                       children: [
                         // first tab bar view widget
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Column(
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: 100,
-                                  color: Colors.red,
-                                  child: Column(
-                                    children: [
-                                      Text('Computersasd asd adccas'),
-                                      Text('Computer'),
-                                      Text('Computer'),
-                                    ],
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 100,
+                                    width: 100,
+                                    color: Colors.red,
+                                    child: Column(
+                                      children: [
+                                        Text('Computersasd asd adccas'),
+                                        Text('Computer'),
+                                        Text('Computer'),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 90,
-                                ),
-                                Container(
-                                  height: 100,
-                                  color: Colors.red,
-                                  child: Column(
-                                    children: [
-                                      Text('Computer'),
-                                      Text('Computer'),
-                                      Text('Computer'),
-                                    ],
+                                  SizedBox(
+                                    height: 90,
                                   ),
-                                ),
-                              ],
+                                  AnimatedBuilder(
+                                      animation: animationContainerLeft1,
+                                      builder: (context, child) {
+                                        return Container(
+                                          height: 100,
+                                          width: 200,
+                                          color: Colors.amber,
+                                          child: Stack(
+                                            children: [
+                                              Positioned(
+                                                left: screenSize.width *
+                                                    animationControllerContainerLeft1
+                                                        .value,
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                        '{animationControllerContainerLeft1.value}'),
+                                                    Text('Computer'),
+                                                    Text('Computer'),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 150,
                             ),
                             Column(
                               children: [
@@ -244,7 +368,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   child: RotatedBox(
                                       quarterTurns: 1,
                                       child: AnimatedBuilder(
-                                          animation: anime,
+                                          animation: animationLine1,
                                           builder: (context, child) {
                                             return Column(
                                               children: [
@@ -262,7 +386,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                     Colors.amber,
                                                   ),
                                                   value:
-                                                      animationController.value,
+                                                      animationControllerLine1
+                                                          .value,
                                                 ),
                                               ],
                                             );
@@ -355,23 +480,29 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 ),
                               ],
                             ),
-                            Column(
-                              children: [
-                                SizedBox(
-                                  height: 100,
-                                ),
-                                Container(
-                                  height: 100,
-                                  color: Colors.red,
-                                  child: Column(
-                                    children: [
-                                      Text('Computer'),
-                                      Text('Computer'),
-                                      Text('Computer'),
-                                    ],
+                            SizedBox(
+                              width: 150,
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 100,
                                   ),
-                                ),
-                              ],
+                                  Container(
+                                    width: 200,
+                                    height: 100,
+                                    color: Colors.amber,
+                                    child: Column(
+                                      children: [
+                                        Text('Computer'),
+                                        Text('Computer'),
+                                        Text('Computer'),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
