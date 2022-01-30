@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     tst.addtoList();
 
     print('pp');
-    print(tst.lsts[0].pic[0]);
+    print(tst.lsts[0].pic[0]![0]);
 
     _scrollController.addListener(_scrollListener);
     animationControllerLine1 = AnimationController(
@@ -192,7 +192,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
                   Container(
                     height: 400,
-                    width: 650,
+                    width: screenSize.width * .8,
                     color: Colors.red,
                     child: Swiper(
                       autoplay: false,
@@ -203,61 +203,85 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       pagination: SwiperPagination(),
                       control: SwiperControl(),
                       itemBuilder: (BuildContext context, int index) {
-                        if (index == 0)
-                          return Row(
-                            children: [
-                              Text('lol'),
-                              Container(
-                                height: 200,
-                                width: 450,
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Container(
+                                  width: 200,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 50,
+                                      ),
+                                      Text('${tst.lsts[index].name}'),
+                                      SizedBox(
+                                        height: 50,
+                                      ),
+                                      Text('${tst.lsts[index].description}'),
+                                      Text('-Feature 1'),
+                                      Text('-Feature 2'),
+                                      Text('-Feature 3'),
+                                      Text('-Feature 4'),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Container(
+                                height: 300,
+                                width: 250,
+                                color: Colors.black,
                                 child: Swiper(
-                                  indicatorLayout: PageIndicatorLayout.NONE,
-                                  autoplay: true,
+                                  autoplay: false,
                                   itemCount: 3,
                                   // loop: true,
                                   // layout: SwiperLayout.DEFAULT,
                                   scrollDirection: Axis.horizontal,
                                   pagination: SwiperPagination(),
-                                  control: SwiperControl(),
-                                  containerHeight: 100,
-                                  containerWidth: 100,
+                                  layout: SwiperLayout.TINDER,
+                                  control: SwiperControl(
+                                      iconNext: Icons.ac_unit,
+                                      color: Colors.yellow),
+                                  itemHeight: 300,
+                                  itemWidth: 200,
+
                                   itemBuilder:
-                                      (BuildContext context, int index) {
-                                    if (index == 0)
-                                      return Container(
-                                          width: 50,
-                                          height: 50,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(10),
-                                            ),
-                                          ),
-                                          child: Image.asset(
-                                            'assets/images/about.jpg',
-                                            fit: BoxFit.cover,
-                                          ));
-                                    if (index == 1)
-                                      return Container(
-                                          alignment: Alignment.center,
-                                          child: Text('lol2'));
-                                    if (index == 2)
-                                      return Container(
-                                          alignment: Alignment.center,
-                                          child: Text('lol3'));
-                                    return Text('pp');
+                                      (BuildContext context, int indexHori) {
+                                    return Column(
+                                      children: [
+                                        Text(
+                                            '${tst.lsts[index].pic[indexHori]![1]}'),
+                                        Expanded(
+                                          child: Container(
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                color: Colors.blue,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(10),
+                                                ),
+                                              ),
+                                              child: Image.asset(
+                                                '${tst.lsts[index].pic[indexHori]![0]}',
+                                                height: 300,
+                                                width: 200,
+                                                fit: BoxFit.cover,
+                                              )),
+                                        ),
+                                      ],
+                                    );
                                   },
                                 ),
                               ),
-                            ],
-                          );
-                        if (index == 1)
-                          return Container(
-                              alignment: Alignment.center, child: Text('lol2'));
-                        if (index == 2)
-                          return Container(
-                              alignment: Alignment.center, child: Text('lol3'));
-                        return Text('pp');
+                            ),
+                          ],
+                        );
                       },
                     ),
                   ),
