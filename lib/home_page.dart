@@ -28,6 +28,27 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   _scrollListener() {
     setState(() {
       _scrollPosition = _scrollController.position.pixels;
+
+      if (_scrollPosition > 600 && _scrollPosition <= 900) {
+        //  dynamic anim =  animationControllerLine1.drive(CurveTween(curve: Curves.bounceIn));
+        animationControllerLine1.forward();
+        // animationControllerContainerLeft1.drive(CurveTween(curve: Curves.fastOutSlowIn));
+        animationControllerContainerLeft1.forward();
+        animationControllerOpacity.forward();
+        print(animationControllerContainerLeft1.value);
+      }
+      if (_scrollPosition < 600) {
+        animationControllerLine1.reset();
+        animationControllerOpacity.reset();
+        animationControllerContainerLeft1.reset();
+      }
+      if (_scrollPosition > 900) {
+        animationControllerLine1.reverse();
+        animationControllerOpacity.reverse();
+        animationControllerContainerLeft1.reverse();
+        print(animationControllerContainerLeft1.value);
+      }
+
       print('ooopppp $_scrollPosition');
     });
   }
@@ -44,17 +65,33 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     _scrollController.addListener(_scrollListener);
     animationControllerLine1 = AnimationController(
         vsync: this, duration: Duration(milliseconds: 2000));
-    animationLine1 =
-        Tween<double>(begin: 0, end: 1).animate(animationControllerLine1);
+
+    animationLine1 = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
+        parent: animationControllerLine1, curve: Curves.decelerate));
 
     animationControllerContainerLeft1 = AnimationController(
         lowerBound: -0.5,
         upperBound: 0.0,
         vsync: this,
-        animationBehavior: AnimationBehavior.preserve,
         duration: Duration(milliseconds: 2000));
-    animationContainerLeft1 =
-        Tween<double>(begin: 0, end: 1).animate(animationControllerLine1);
+
+    animationContainerLeft1 = Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(
+            parent: animationControllerContainerLeft1,
+            curve: Curves.decelerate));
+
+    animationControllerOpacity = AnimationController(
+        lowerBound: 0,
+        upperBound: 1,
+        vsync: this,
+        duration: Duration(milliseconds: 2000));
+
+    animationOpacity = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: animationControllerOpacity,
+        curve: Curves.decelerate,
+      ),
+    );
 
     super.initState();
   }
@@ -70,6 +107,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   late AnimationController animationControllerContainerLeft1;
   late Animation animationContainerLeft1;
+
+  late AnimationController animationControllerOpacity;
+  late Animation animationOpacity;
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +227,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   //   ),
                   // ),
 
-                  ///portfolio
+                  ///portfolio final
                   Text('Portfolio'),
 
                   Container(
@@ -323,18 +363,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       children: [
                         // first tab bar view widget
                         Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
+                            Container(
+                              width: screenSize.width * .3,
+                              alignment: Alignment.center,
                               child: Column(
                                 children: [
                                   Container(
                                     height: 100,
-                                    width: 100,
+                                    width: screenSize.width * .3,
                                     color: Colors.red,
                                     child: Column(
                                       children: [
-                                        Text('Computersasd asd adccas'),
+                                        Expanded(
+                                            child: Text(
+                                                'Computersasd asd adccas asdasd')),
                                         Text('Computer'),
                                         Text('Computer'),
                                       ],
@@ -346,26 +390,37 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   AnimatedBuilder(
                                       animation: animationContainerLeft1,
                                       builder: (context, child) {
-                                        return Container(
-                                          height: 100,
-                                          width: 200,
-                                          color: Colors.amber,
-                                          child: Stack(
-                                            children: [
-                                              Positioned(
-                                                left: screenSize.width *
-                                                    animationControllerContainerLeft1
-                                                        .value,
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                        '{animationControllerContainerLeft1.value}'),
-                                                    Text('Computer'),
-                                                    Text('Computer'),
-                                                  ],
+                                        return Opacity(
+                                          opacity:
+                                              animationControllerOpacity.value,
+                                          child: Container(
+                                            height: 100,
+                                            width: screenSize.width * .3,
+                                            child: Stack(
+                                              children: [
+                                                Positioned(
+                                                  left: screenSize.width *
+                                                      animationControllerContainerLeft1
+                                                          .value,
+                                                  child: Container(
+                                                    height: 100,
+                                                    width:
+                                                        screenSize.width * .3,
+                                                    color: Colors.red,
+                                                    child: Column(
+                                                      children: [
+                                                        Expanded(
+                                                          child: Text(
+                                                              '{animationControllerContainerLeft1.value}'),
+                                                        ),
+                                                        Text('Computer'),
+                                                        Text('Computer'),
+                                                      ],
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         );
                                       }),
@@ -373,7 +428,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ),
                             ),
                             SizedBox(
-                              width: 150,
+                              width: 100,
                             ),
                             Column(
                               children: [
@@ -387,6 +442,51 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ),
+
+                                ///line1
+                                Container(
+                                  height: 90,
+                                  child: RotatedBox(
+                                      quarterTurns: 1,
+                                      child: AnimatedBuilder(
+                                          animation: animationLine1,
+                                          builder: (context, child) {
+                                            return Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [],
+                                                ),
+                                                LinearProgressIndicator(
+                                                  backgroundColor: Colors.red,
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    Colors.amber,
+                                                  ),
+                                                  value:
+                                                      animationControllerLine1
+                                                          .value,
+                                                ),
+                                              ],
+                                            );
+                                          })),
+                                ),
+
+                                Container(
+                                  height: 10,
+                                  width: 10,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(5),
+                                    ),
+                                  ),
+                                ),
+
+                                ///line2
                                 Container(
                                   height: 90,
                                   child: RotatedBox(
@@ -427,17 +527,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ),
+                                //line3
                                 Container(
-                                  height: 80,
+                                  height: 90,
                                   child: RotatedBox(
                                       quarterTurns: 1,
-                                      child: TweenAnimationBuilder(
-                                          duration:
-                                              Duration(milliseconds: 3000),
-                                          curve: Curves.easeOut,
-                                          tween:
-                                              Tween<double>(begin: 0, end: 1),
-                                          builder: (context, double gg, _) {
+                                      child: AnimatedBuilder(
+                                          animation: animationLine1,
+                                          builder: (context, child) {
                                             return Column(
                                               children: [
                                                 Row(
@@ -453,50 +550,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                           Color>(
                                                     Colors.amber,
                                                   ),
-                                                  value: gg,
-                                                ),
-                                              ],
-                                            );
-                                          })),
-                                ),
-                                Container(
-                                  height: 10,
-                                  width: 10,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(5),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  height: 90,
-                                  child: RotatedBox(
-                                      quarterTurns: 1,
-                                      child: TweenAnimationBuilder(
-                                          duration:
-                                              Duration(milliseconds: 4000),
-                                          curve: Curves.easeOut,
-                                          tween:
-                                              Tween<double>(begin: 0, end: 1),
-                                          builder: (context, double gg, _) {
-                                            return Column(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [],
-                                                ),
-                                                LinearProgressIndicator(
-                                                  backgroundColor:
-                                                      Colors.deepPurple,
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    Colors.amber,
-                                                  ),
-                                                  value: gg,
+                                                  value:
+                                                      animationControllerLine1
+                                                          .value,
                                                 ),
                                               ],
                                             );
@@ -507,7 +563,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             SizedBox(
                               width: 150,
                             ),
-                            Expanded(
+                            Container(
+                              width: screenSize.width * .3,
                               child: Column(
                                 children: [
                                   SizedBox(

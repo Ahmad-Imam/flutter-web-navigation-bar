@@ -38,7 +38,7 @@ class _ButtonElevatedState extends State<ButtonElevated> {
             ),
             AnimatedContainer(
               width: boxWidth ? 5 : 15,
-              curve: Curves.easeInCubic,
+              curve: Curves.decelerate,
               duration: Duration(milliseconds: 300),
             ),
             widget.icons,
