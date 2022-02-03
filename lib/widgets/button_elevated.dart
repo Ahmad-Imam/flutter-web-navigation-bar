@@ -16,34 +16,31 @@ class _ButtonElevatedState extends State<ButtonElevated> {
   bool boxWidth = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 180,
-      height: 50,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(),
-        onPressed: () {},
-        onHover: (val) {
-          setState(() {
-            boxWidth = val;
-          });
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              widget.text,
-              style: Get.textTheme.subtitle1!.copyWith(
-                color: Get.theme.primaryColor,
-              ),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(),
+      onPressed: () {},
+      onHover: (val) {
+        setState(() {
+          boxWidth = val;
+        });
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            widget.text,
+            style: Get.textTheme.subtitle1!.copyWith(
+              color: context.theme.cardColor,
+              fontSize: 15,
             ),
-            AnimatedContainer(
-              width: boxWidth ? 5 : 15,
-              curve: Curves.decelerate,
-              duration: Duration(milliseconds: 300),
-            ),
-            widget.icons,
-          ],
-        ),
+          ),
+          AnimatedContainer(
+            width: boxWidth ? 5 : 10,
+            curve: Curves.decelerate,
+            duration: Duration(milliseconds: 300),
+          ),
+          widget.icons,
+        ],
       ),
     );
     ;

@@ -6,6 +6,7 @@ import 'package:flutter_nav/custom_clip.dart';
 import 'package:flutter_nav/responsive.dart';
 import 'package:flutter_nav/top_bar_contents.dart';
 import 'package:flutter_nav/widgets/button_elevated.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
 import 'model/project_model.dart';
@@ -29,22 +30,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     setState(() {
       _scrollPosition = _scrollController.position.pixels;
 
+      animationControllerContainerRight1.forward();
       if (_scrollPosition > 600 && _scrollPosition <= 900) {
         //  dynamic anim =  animationControllerLine1.drive(CurveTween(curve: Curves.bounceIn));
         animationControllerLine1.forward();
         // animationControllerContainerLeft1.drive(CurveTween(curve: Curves.fastOutSlowIn));
         animationControllerContainerLeft1.forward();
         animationControllerOpacity.forward();
+        animationControllerContainerRight1.forward();
         print(animationControllerContainerLeft1.value);
       }
       if (_scrollPosition < 600) {
         animationControllerLine1.reset();
         animationControllerOpacity.reset();
+        animationControllerContainerRight1.reset();
         animationControllerContainerLeft1.reset();
       }
       if (_scrollPosition > 900) {
         animationControllerLine1.reverse();
         animationControllerOpacity.reverse();
+        animationControllerContainerRight1.reverse();
         animationControllerContainerLeft1.reverse();
         print(animationControllerContainerLeft1.value);
       }
@@ -80,6 +85,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             parent: animationControllerContainerLeft1,
             curve: Curves.decelerate));
 
+    animationControllerContainerRight1 = AnimationController(
+        lowerBound: -0.5,
+        upperBound: 0.0,
+        vsync: this,
+        duration: Duration(milliseconds: 2000));
+
+    animationContainerRight1 = Tween<double>(begin: 0, end: 1).animate(
+        CurvedAnimation(
+            parent: animationControllerContainerRight1,
+            curve: Curves.decelerate));
+
     animationControllerOpacity = AnimationController(
         lowerBound: 0,
         upperBound: 1,
@@ -108,13 +124,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late AnimationController animationControllerContainerLeft1;
   late Animation animationContainerLeft1;
 
+  late AnimationController animationControllerContainerRight1;
+  late Animation animationContainerRight1;
+
   late AnimationController animationControllerOpacity;
   late Animation animationOpacity;
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -124,6 +141,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 backgroundColor: Colors.white70,
                 elevation: 0,
                 centerTitle: true,
+                // leading: MenuDrawer(),
                 title: Text(
                   'Library',
                   style: TextStyle(
@@ -134,7 +152,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ),
               )
             : PreferredSize(
-                preferredSize: Size(screenSize.width, 70),
+                preferredSize: Size(MediaQuery.of(context).size.width, 70),
                 child: TopBarContents(
                   scrollPos: _scrollPosition,
                   scrollController: _scrollController,
@@ -227,12 +245,156 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   //   ),
                   // ),
 
+                  ///intro
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        width: 20,
+                      ),
+
+                      Container(
+                        height: MediaQuery.of(context).size.height * .2,
+                        color: Colors.red,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            // HoverAnimatedContainer(
+                            //   width: 200,
+                            //   height: 200,
+                            //   color: Colors.red,
+                            //   hoverColor: Colors.green,
+                            //   hoverHeight: 220,
+                            //   hoverWidth: 220,
+                            //   curve: Curves.easeInOutBack,
+                            //   child: Text('lol'),
+                            // ),
+                            // Text('Lol',
+                            //     style: Theme.of(context).textTheme.headline1),
+                            // ElevatedButton(
+                            //   style: ElevatedButton.styleFrom(),
+                            //   onPressed: () {},
+                            //   child: Text(
+                            //     'press',
+                            //     style: Get.textTheme.subtitle1!.copyWith(
+                            //       color: Get.theme.primaryColor,
+                            //     ),
+                            //   ),
+                            // )
+
+                            Icon(Icons.facebook),
+
+                            Icon(Icons.facebook),
+
+                            Icon(Icons.facebook),
+                          ],
+                        ),
+                      ),
+                      // Container(
+                      //   color: Colors.red,
+                      //   child: Image.asset(
+                      //     'assets/images/ahmad.jpg',
+                      //     height: 400,
+                      //     width: 400,
+                      //     fit: BoxFit.cover,
+                      //   ),
+                      // ),
+
+                      Container(
+                        width: MediaQuery.of(context).size.width * .1,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Hi I am a Bot',
+                            style: Get.theme.textTheme.headline1!.copyWith(
+                                fontSize: ScreenUtil().setSp(20),
+                                color: context.theme.primaryColor),
+                          ),
+                          Text(
+                            'Hi I am a Bot',
+                            style: Get.theme.textTheme.headline1!
+                                .copyWith(fontSize: 20),
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * .3,
+                            color: Colors.red,
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Lorem ipsum, dolor sit amet cons adipisicing elit. Ipsam debitisvoluptates consequuntur repellat nulla possimus?',
+                              style: Get.theme.textTheme.headline1!.copyWith(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          ButtonElevated(
+                            icons: Icon(Icons.arrow_forward_ios),
+                            text: 'Press',
+                          ),
+                          SizedBox(
+                            height: 100,
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * .1,
+                      ),
+                      Expanded(
+                        child: ClipPath(
+                          clipper: CustomClippersPath(),
+                          child: Container(
+                            height: MediaQuery.of(context).size.width * .3,
+                            width: MediaQuery.of(context).size.width * .3,
+                            child: Image.asset('assets/images/about.jpg'),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(
+                    height: 80,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: InkWell(
+                      splashFactory: NoSplash.splashFactory,
+                      hoverColor: Colors.transparent,
+                      enableFeedback: false,
+                      onHover: (val) {
+                        print(val);
+                        setState(() {
+                          scrollDown = val;
+                        });
+                      },
+                      onTap: () {},
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 500),
+                        padding: EdgeInsets.only(top: scrollDown ? 5 : 0),
+                        child: Row(
+                          children: [
+                            Icon(Icons.mouse),
+                            Text('Scroll Down'),
+                            Icon(Icons.arrow_drop_down),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 100,
+                  ),
+
                   ///portfolio final
                   Text('Portfolio'),
 
                   Container(
                     height: 400,
-                    width: screenSize.width * .8,
+                    width: MediaQuery.of(context).size.width * .8,
                     color: Colors.red,
                     child: Swiper(
                       autoplay: false,
@@ -340,19 +502,22 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       },
                       child: Text('journey')),
 
-                  TabBar(
-                    labelColor: Colors.amber,
-                    indicatorColor: Colors.brown.withOpacity(0),
-                    tabs: [
-                      Tab(
-                        icon: Icon(Icons.directions_bike),
-                      ),
-                      Tab(
-                        icon: Icon(
-                          Icons.directions_car,
+                  DefaultTabController(
+                    length: 2,
+                    child: TabBar(
+                      labelColor: Colors.amber,
+                      indicatorColor: Colors.brown.withOpacity(0),
+                      tabs: [
+                        Tab(
+                          icon: Icon(Icons.directions_bike),
                         ),
-                      ),
-                    ],
+                        Tab(
+                          icon: Icon(
+                            Icons.directions_car,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
 
                   // create widgets for each tab bar here
@@ -366,13 +531,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              width: screenSize.width * .3,
+                              width: MediaQuery.of(context).size.width * .3,
                               alignment: Alignment.center,
                               child: Column(
                                 children: [
                                   Container(
                                     height: 100,
-                                    width: screenSize.width * .3,
+                                    width:
+                                        MediaQuery.of(context).size.width * .3,
                                     color: Colors.red,
                                     child: Column(
                                       children: [
@@ -395,17 +561,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               animationControllerOpacity.value,
                                           child: Container(
                                             height: 100,
-                                            width: screenSize.width * .3,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .3,
                                             child: Stack(
                                               children: [
                                                 Positioned(
-                                                  left: screenSize.width *
+                                                  left: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
                                                       animationControllerContainerLeft1
                                                           .value,
                                                   child: Container(
                                                     height: 100,
                                                     width:
-                                                        screenSize.width * .3,
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            .3,
                                                     color: Colors.red,
                                                     child: Column(
                                                       children: [
@@ -428,7 +602,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ),
                             ),
                             SizedBox(
-                              width: 100,
+                              width: 50,
                             ),
                             Column(
                               children: [
@@ -561,30 +735,49 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ],
                             ),
                             SizedBox(
-                              width: 150,
+                              width: 50,
                             ),
-                            Container(
-                              width: screenSize.width * .3,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 100,
-                                  ),
-                                  Container(
-                                    width: 200,
-                                    height: 100,
-                                    color: Colors.amber,
-                                    child: Column(
-                                      children: [
-                                        Text('Computer'),
-                                        Text('Computer'),
-                                        Text('Computer'),
-                                      ],
+                            AnimatedBuilder(
+                                animation: animationContainerRight1,
+                                builder: (context, child) {
+                                  return Opacity(
+                                    opacity: animationControllerOpacity.value,
+                                    child: Container(
+                                      height: 100,
+                                      width: MediaQuery.of(context).size.width *
+                                          .3,
+                                      child: Stack(
+                                        children: [
+                                          Positioned(
+                                            right: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                animationControllerContainerRight1
+                                                    .value,
+                                            child: Container(
+                                              height: 100,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .3,
+                                              color: Colors.red,
+                                              child: Column(
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                        '{animationControllerContainerLeft1.value}'),
+                                                  ),
+                                                  Text('Computsser'),
+                                                  Text('Computer'),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                  );
+                                }),
                           ],
                         ),
 
@@ -669,7 +862,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       Expanded(
                         child: HoverContainer(
                           height: 350,
-                          width: 250,
+                          width: 260,
                           color: Colors.red,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20),
@@ -679,9 +872,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               children: [
                                 Icon(Icons.add),
                                 Text('UI'),
-                                ButtonElevated(
-                                    text: 'View More',
-                                    icons: Icon(Icons.arrow_back_ios))
+                                Container(
+                                  width: 140,
+                                  child: ButtonElevated(
+                                      text: 'View More',
+                                      icons: Icon(Icons.arrow_back_ios)),
+                                )
                               ],
                             ),
                           ),
@@ -945,133 +1141,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     height: 250,
                   ),
 
-                  ///intro
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-
-                      Column(
-                        children: [
-                          // HoverAnimatedContainer(
-                          //   width: 200,
-                          //   height: 200,
-                          //   color: Colors.red,
-                          //   hoverColor: Colors.green,
-                          //   hoverHeight: 220,
-                          //   hoverWidth: 220,
-                          //   curve: Curves.easeInOutBack,
-                          //   child: Text('lol'),
-                          // ),
-                          // Text('Lol',
-                          //     style: Theme.of(context).textTheme.headline1),
-                          // ElevatedButton(
-                          //   style: ElevatedButton.styleFrom(),
-                          //   onPressed: () {},
-                          //   child: Text(
-                          //     'press',
-                          //     style: Get.textTheme.subtitle1!.copyWith(
-                          //       color: Get.theme.primaryColor,
-                          //     ),
-                          //   ),
-                          // )
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Icon(Icons.facebook),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Icon(Icons.facebook),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Icon(Icons.facebook),
-                          SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ),
-                      // Container(
-                      //   color: Colors.red,
-                      //   child: Image.asset(
-                      //     'assets/images/ahmad.jpg',
-                      //     height: 400,
-                      //     width: 400,
-                      //     fit: BoxFit.cover,
-                      //   ),
-                      // ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Hi I am a Bot',
-                            style: Get.theme.textTheme.headline1!
-                                .copyWith(fontSize: 25),
-                          ),
-                          Text(
-                            'Hi I am a Bot',
-                            style: Get.theme.textTheme.headline1!
-                                .copyWith(fontSize: 20),
-                          ),
-                          Container(
-                            width: 300,
-                            color: Colors.red,
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Lorem ipsum, dolor sit amet cons adipisicing elit. Ipsam debitisvoluptates consequuntur repellat nulla possimus?',
-                              style: Get.theme.textTheme.headline1!.copyWith(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                          ButtonElevated(
-                            icons: Icon(Icons.arrow_forward_ios),
-                            text: 'Press',
-                          ),
-                          SizedBox(
-                            height: 100,
-                          ),
-                          InkWell(
-                            splashColor: Colors.transparent,
-                            splashFactory: NoSplash.splashFactory,
-                            onHover: (val) {
-                              print(val);
-                              setState(() {
-                                scrollDown = val;
-                              });
-                            },
-                            onTap: () {},
-                            child: AnimatedContainer(
-                              duration: Duration(milliseconds: 500),
-                              padding: EdgeInsets.only(top: scrollDown ? 5 : 0),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.mouse),
-                                  Text('Scroll Down'),
-                                  Icon(Icons.arrow_drop_down),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                      Expanded(
-                        child: Container(
-                            height: 300,
-                            width: 300,
-                            child: Image.asset('assets/images/about.jpg')),
-                      ),
-
-                      SizedBox(
-                        width: 20,
-                      ),
-                    ],
-                  ),
-
                   ///about
                   Text('About Me'),
                   Text('intro'),
@@ -1296,8 +1365,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   /// background
                   Container(
                     child: SizedBox(
-                      height: screenSize.height * .9,
-                      width: screenSize.width,
+                      height: MediaQuery.of(context).size.height * .9,
+                      width: MediaQuery.of(context).size.width,
                       child: Image.asset(
                         'assets/images/background.png',
                         fit: BoxFit.cover,
