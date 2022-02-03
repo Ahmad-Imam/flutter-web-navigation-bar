@@ -245,6 +245,116 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   //   ),
                   // ),
 
+                  ///portfolio final
+                  Text('Portfolio'),
+
+                  Container(
+                    height: MediaQuery.of(context).size.height * .7,
+                    width: MediaQuery.of(context).size.width * .8,
+                    color: Colors.red,
+                    child: Swiper(
+                      autoplay: false,
+                      itemCount: 3,
+                      // loop: true,
+                      // layout: SwiperLayout.DEFAULT,
+                      scrollDirection: Axis.vertical,
+                      pagination: SwiperPagination(),
+                      control: SwiperControl(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * .4,
+                              height: MediaQuery.of(context).size.height * .7,
+                              color: Colors.black,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 50.h,
+                                    ),
+                                    Text('${tst.lsts[index].name}'),
+                                    SizedBox(
+                                      height: 50.h,
+                                    ),
+                                    Text('${tst.lsts[index].description}'),
+                                    SizedBox(
+                                      height: 50.h,
+                                    ),
+                                    Text('-Feature 1'),
+                                    Text('-Feature 2'),
+                                    Text('-Feature 3'),
+                                    Text('-Feature 4'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * .4,
+                              height: MediaQuery.of(context).size.height * .7,
+                              color: Colors.red,
+                              alignment: Alignment.topCenter,
+                              child: Swiper(
+                                autoplay: false,
+                                itemCount: 3,
+                                // loop: true,
+                                // layout: SwiperLayout.DEFAULT,
+                                scrollDirection: Axis.horizontal,
+                                pagination: SwiperPagination(),
+                                layout: SwiperLayout.TINDER,
+                                
+                                outer: true,
+                                itemHeight:
+                                    MediaQuery.of(context).size.height * .7,
+                                itemWidth:
+                                    MediaQuery.of(context).size.width * .8,
+
+                                itemBuilder:
+                                    (BuildContext context, int indexHori) {
+                                  return Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          '${tst.lsts[index].pic[indexHori]![1]}'),
+                                      Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .5,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .8,
+                                          clipBehavior: Clip.antiAlias,
+                                          decoration: BoxDecoration(
+                                            color: Colors.blue,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(10),
+                                            ),
+                                          ),
+                                          child: Image.asset(
+                                            '${tst.lsts[index].pic[indexHori]![0]}',
+                                            fit: BoxFit.cover,
+                                          )),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 200,
+                  ),
+
                   ///intro
 
                   Row(
@@ -304,39 +414,53 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       Container(
                         width: MediaQuery.of(context).size.width * .1,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Hi I am a Bot',
-                            style: Get.theme.textTheme.headline1!.copyWith(
-                                fontSize: ScreenUtil().setSp(20),
-                                color: context.theme.primaryColor),
-                          ),
-                          Text(
-                            'Hi I am a Bot',
-                            style: Get.theme.textTheme.headline1!
-                                .copyWith(fontSize: 20),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width * .3,
-                            color: Colors.red,
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Lorem ipsum, dolor sit amet cons adipisicing elit. Ipsam debitisvoluptates consequuntur repellat nulla possimus?',
+                      Container(
+                        height: MediaQuery.of(context).size.height * .8,
+                        color: Colors.red,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Hi I am a Bot',
                               style: Get.theme.textTheme.headline1!.copyWith(
-                                fontSize: 16,
+                                  fontSize: 20.sp,
+                                  color: context.theme.primaryColor),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Text(
+                              'Hi I am a Bot',
+                              style: Get.theme.textTheme.headline1!
+                                  .copyWith(fontSize: 18.sp),
+                            ),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * .4,
+                              color: Colors.red,
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Lorem ipsum, dolor sit amet cons adipisicing elit. Ipsam debitisvoluptates consequuntur repellat nulla possimus?',
+                                style: Get.theme.textTheme.headline1!.copyWith(
+                                  fontSize: 16,
+                                ),
                               ),
                             ),
-                          ),
-                          ButtonElevated(
-                            icons: Icon(Icons.arrow_forward_ios),
-                            text: 'Press',
-                          ),
-                          SizedBox(
-                            height: 100,
-                          ),
-                        ],
+                            SizedBox(
+                              height: 50.h,
+                            ),
+                            ButtonElevated(
+                              icons: Icon(Icons.arrow_forward_ios),
+                              text: 'Press',
+                            ),
+                            SizedBox(
+                              height: 100,
+                            ),
+                          ],
+                        ),
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * .1,
@@ -345,9 +469,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         child: ClipPath(
                           clipper: CustomClippersPath(),
                           child: Container(
-                            height: MediaQuery.of(context).size.width * .3,
-                            width: MediaQuery.of(context).size.width * .3,
-                            child: Image.asset('assets/images/about.jpg'),
+                            height: MediaQuery.of(context).size.height * .6,
+                            width: MediaQuery.of(context).size.width * .4,
+                            child: Image.asset(
+                              'assets/images/about.jpg',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -355,7 +482,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
 
                   SizedBox(
-                    height: 80,
+                    height: 20.h,
                   ),
 
                   Padding(
@@ -387,109 +514,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
                   SizedBox(
                     height: 100,
-                  ),
-
-                  ///portfolio final
-                  Text('Portfolio'),
-
-                  Container(
-                    height: 400,
-                    width: MediaQuery.of(context).size.width * .8,
-                    color: Colors.red,
-                    child: Swiper(
-                      autoplay: false,
-                      itemCount: 3,
-                      // loop: true,
-                      // layout: SwiperLayout.DEFAULT,
-                      scrollDirection: Axis.vertical,
-                      pagination: SwiperPagination(),
-                      control: SwiperControl(),
-                      itemBuilder: (BuildContext context, int index) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Container(
-                                  width: 200,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 50,
-                                      ),
-                                      Text('${tst.lsts[index].name}'),
-                                      SizedBox(
-                                        height: 50,
-                                      ),
-                                      Text('${tst.lsts[index].description}'),
-                                      Text('-Feature 1'),
-                                      Text('-Feature 2'),
-                                      Text('-Feature 3'),
-                                      Text('-Feature 4'),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                height: 300,
-                                width: 250,
-                                color: Colors.black,
-                                child: Swiper(
-                                  autoplay: false,
-                                  itemCount: 3,
-                                  // loop: true,
-                                  // layout: SwiperLayout.DEFAULT,
-                                  scrollDirection: Axis.horizontal,
-                                  pagination: SwiperPagination(),
-                                  layout: SwiperLayout.TINDER,
-                                  control: SwiperControl(
-                                      iconNext: Icons.ac_unit,
-                                      color: Colors.yellow),
-                                  itemHeight: 300,
-                                  itemWidth: 200,
-
-                                  itemBuilder:
-                                      (BuildContext context, int indexHori) {
-                                    return Column(
-                                      children: [
-                                        Text(
-                                            '${tst.lsts[index].pic[indexHori]![1]}'),
-                                        Expanded(
-                                          child: Container(
-                                              clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
-                                                color: Colors.blue,
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(10),
-                                                ),
-                                              ),
-                                              child: Image.asset(
-                                                '${tst.lsts[index].pic[indexHori]![0]}',
-                                                height: 300,
-                                                width: 200,
-                                                fit: BoxFit.cover,
-                                              )),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: 200,
                   ),
 
                   ///qualification
