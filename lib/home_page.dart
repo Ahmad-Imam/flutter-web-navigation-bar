@@ -9,6 +9,7 @@ import 'package:flutter_nav/widgets/button_elevated.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swiper_plus/flutter_swiper_plus.dart';
+import 'package:rive/rive.dart';
 import 'model/project_model.dart';
 import 'package:get/get.dart';
 import 'package:hovering/hovering.dart';
@@ -245,116 +246,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   //   ),
                   // ),
 
-                  ///portfolio final
-                  Text('Portfolio'),
-
-                  Container(
-                    height: MediaQuery.of(context).size.height * .7,
-                    width: MediaQuery.of(context).size.width * .8,
-                    color: Colors.red,
-                    child: Swiper(
-                      autoplay: false,
-                      itemCount: 3,
-                      // loop: true,
-                      // layout: SwiperLayout.DEFAULT,
-                      scrollDirection: Axis.vertical,
-                      pagination: SwiperPagination(),
-                      control: SwiperControl(),
-                      itemBuilder: (BuildContext context, int index) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * .4,
-                              height: MediaQuery.of(context).size.height * .7,
-                              color: Colors.black,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 50.h,
-                                    ),
-                                    Text('${tst.lsts[index].name}'),
-                                    SizedBox(
-                                      height: 50.h,
-                                    ),
-                                    Text('${tst.lsts[index].description}'),
-                                    SizedBox(
-                                      height: 50.h,
-                                    ),
-                                    Text('-Feature 1'),
-                                    Text('-Feature 2'),
-                                    Text('-Feature 3'),
-                                    Text('-Feature 4'),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * .4,
-                              height: MediaQuery.of(context).size.height * .7,
-                              color: Colors.red,
-                              alignment: Alignment.topCenter,
-                              child: Swiper(
-                                autoplay: false,
-                                itemCount: 3,
-                                // loop: true,
-                                // layout: SwiperLayout.DEFAULT,
-                                scrollDirection: Axis.horizontal,
-                                pagination: SwiperPagination(),
-                                layout: SwiperLayout.TINDER,
-                                
-                                outer: true,
-                                itemHeight:
-                                    MediaQuery.of(context).size.height * .7,
-                                itemWidth:
-                                    MediaQuery.of(context).size.width * .8,
-
-                                itemBuilder:
-                                    (BuildContext context, int indexHori) {
-                                  return Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          '${tst.lsts[index].pic[indexHori]![1]}'),
-                                      Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              .5,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .8,
-                                          clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
-                                            color: Colors.blue,
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(10),
-                                            ),
-                                          ),
-                                          child: Image.asset(
-                                            '${tst.lsts[index].pic[indexHori]![0]}',
-                                            fit: BoxFit.cover,
-                                          )),
-                                    ],
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: 200,
-                  ),
-
                   ///intro
 
                   Row(
@@ -423,17 +314,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           children: [
                             Text(
                               'Hi I am a Bot',
-                              style: Get.theme.textTheme.headline1!.copyWith(
-                                  fontSize: 20.sp,
-                                  color: context.theme.primaryColor),
+                              style: context.textTheme.headline1!.copyWith(
+                                fontSize: 20.sp,
+                              ),
                             ),
                             SizedBox(
                               height: 20.h,
-                            ),
-                            Text(
-                              'Hi I am a Bot',
-                              style: Get.theme.textTheme.headline1!
-                                  .copyWith(fontSize: 18.sp),
                             ),
                             SizedBox(
                               height: 20.h,
@@ -444,7 +330,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               alignment: Alignment.center,
                               child: Text(
                                 'Lorem ipsum, dolor sit amet cons adipisicing elit. Ipsam debitisvoluptates consequuntur repellat nulla possimus?',
-                                style: Get.theme.textTheme.headline1!.copyWith(
+                                style: Get.theme.textTheme.headline2!.copyWith(
                                   fontSize: 16,
                                 ),
                               ),
@@ -473,7 +359,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             width: MediaQuery.of(context).size.width * .4,
                             child: Image.asset(
                               'assets/images/about.jpg',
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),
@@ -497,7 +383,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           scrollDown = val;
                         });
                       },
-                      onTap: () {},
+                      onTap: () {
+                        _scrollController.animateTo(600,
+                            duration: Duration(seconds: 1),
+                            curve: Curves.decelerate);
+                      },
                       child: AnimatedContainer(
                         duration: Duration(milliseconds: 500),
                         padding: EdgeInsets.only(top: scrollDown ? 5 : 0),
@@ -513,7 +403,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
 
                   SizedBox(
-                    height: 100,
+                    height: 100.h,
                   ),
 
                   ///qualification
@@ -526,22 +416,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       },
                       child: Text('journey')),
 
-                  DefaultTabController(
-                    length: 2,
-                    child: TabBar(
-                      labelColor: Colors.amber,
-                      indicatorColor: Colors.brown.withOpacity(0),
-                      tabs: [
-                        Tab(
-                          icon: Icon(Icons.directions_bike),
+                  TabBar(
+                    labelColor: Colors.amber,
+                    indicatorColor: Colors.brown.withOpacity(0),
+                    tabs: [
+                      Tab(
+                        icon: Icon(Icons.directions_bike),
+                      ),
+                      Tab(
+                        icon: Icon(
+                          Icons.directions_car,
                         ),
-                        Tab(
-                          icon: Icon(
-                            Icons.directions_car,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
 
                   // create widgets for each tab bar here
@@ -585,6 +472,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               animationControllerOpacity.value,
                                           child: Container(
                                             height: 100,
+                                            color: Colors.teal,
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
@@ -605,6 +493,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                                                 .width *
                                                             .3,
                                                     color: Colors.red,
+                                                    padding: EdgeInsets.all(5),
                                                     child: Column(
                                                       children: [
                                                         Expanded(
@@ -628,49 +517,55 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             SizedBox(
                               width: 50,
                             ),
-                            Column(
+                            Stack(
                               children: [
-                                Container(
-                                  height: 10,
-                                  width: 10,
-                                  decoration: BoxDecoration(
-                                    color: Colors.black,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(5),
+                                AnimatedPositioned(
+                                  duration: Duration(seconds: 2),
+                                  child: Container(
+                                    height: 10,
+                                    width: 10,
+                                    decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(5),
+                                      ),
                                     ),
                                   ),
                                 ),
 
                                 ///line1
-                                Container(
-                                  height: 90,
-                                  child: RotatedBox(
-                                      quarterTurns: 1,
-                                      child: AnimatedBuilder(
-                                          animation: animationLine1,
-                                          builder: (context, child) {
-                                            return Column(
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [],
-                                                ),
-                                                LinearProgressIndicator(
-                                                  backgroundColor: Colors.red,
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    Colors.amber,
+                                AnimatedPositioned(
+                                  duration: Duration(seconds: 2),
+                                  child: Container(
+                                    height: 90,
+                                    child: RotatedBox(
+                                        quarterTurns: 1,
+                                        child: AnimatedBuilder(
+                                            animation: animationLine1,
+                                            builder: (context, child) {
+                                              return Column(
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [],
                                                   ),
-                                                  value:
-                                                      animationControllerLine1
-                                                          .value,
-                                                ),
-                                              ],
-                                            );
-                                          })),
+                                                  LinearProgressIndicator(
+                                                    backgroundColor: Colors.red,
+                                                    valueColor:
+                                                        AlwaysStoppedAnimation<
+                                                            Color>(
+                                                      Colors.amber,
+                                                    ),
+                                                    value:
+                                                        animationControllerLine1
+                                                            .value,
+                                                  ),
+                                                ],
+                                              );
+                                            })),
+                                  ),
                                 ),
 
                                 Container(
@@ -756,6 +651,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             );
                                           })),
                                 ),
+                              
+                              
                               ],
                             ),
                             SizedBox(
@@ -822,52 +719,342 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     height: 250,
                   ),
 
-                  ///portfolio
-                  Text('Portfolio'),
+                  ///about
+                  Text(
+                    'About Me',
+                    style: context.textTheme.headline1?.copyWith(
+                      fontSize: 20.sp,
+                    ),
+                  ),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        height: 300,
+                        width: MediaQuery.of(context).size.width * .4,
+                        color: Colors.red,
+                        child: Image.asset(
+                          'assets/images/about.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * .4,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 250,
+                              child: Text(
+                                'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quas sit tempore temporibus velit aspernatur, itaque quibusdam alias voluptatum pariatur?',
+                                style: context.textTheme.headline2?.copyWith(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            ButtonElevated(
+                              text: 'CV',
+                              icons: Icon(Icons.download),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+
+                  ///portfolio final
+                  Text('Portfoliosss'),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height * .7,
+                            width: MediaQuery.of(context).size.width * .8,
+                            color: Colors.blueAccent,
+                            child: Swiper(
+                              autoplay: false,
+                              itemCount: 3,
+                              // loop: true,
+                              // layout: SwiperLayout.DEFAULT,
+                              scrollDirection: Axis.vertical,
+                              pagination: SwiperPagination(),
+                              control: SwiperControl(),
+                              itemBuilder: (BuildContext context, int index) {
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          .3,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .7,
+                                      color: Colors.black,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 50.h,
+                                            ),
+                                            Text('${tst.lsts[index].name}'),
+                                            SizedBox(
+                                              height: 50.h,
+                                            ),
+                                            Text(
+                                                '${tst.lsts[index].description}'),
+                                            SizedBox(
+                                              height: 50.h,
+                                            ),
+                                            Text('-Feature 1'),
+                                            Text('-Feature 2'),
+                                            Text('-Feature 3'),
+                                            Text('-Feature 4'),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          .5,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .7,
+                                      color: Colors.red,
+                                      alignment: Alignment.topCenter,
+                                      child: Swiper(
+                                        autoplay: false,
+                                        itemCount: 3,
+                                        // loop: true,
+                                        // layout: SwiperLayout.DEFAULT,
+                                        scrollDirection: Axis.horizontal,
+                                        pagination: SwiperPagination(),
+                                        layout: SwiperLayout.TINDER,
+
+                                        outer: true,
+                                        itemHeight:
+                                            MediaQuery.of(context).size.height *
+                                                .7,
+                                        itemWidth:
+                                            MediaQuery.of(context).size.width *
+                                                .3,
+
+                                        itemBuilder: (BuildContext context,
+                                            int indexHori) {
+                                          return Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  '${tst.lsts[index].pic[indexHori]![1]}'),
+                                              Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      .5,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      .8,
+                                                  clipBehavior: Clip.antiAlias,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.blue,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                      Radius.circular(10),
+                                                    ),
+                                                  ),
+                                                  child: Image.asset(
+                                                    '${tst.lsts[index].pic[indexHori]![0]}',
+                                                    fit: BoxFit.cover,
+                                                  )),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text('Pages'),
+                              Container(
+                                width: 50.w,
+                                height: 60.h,
+                                // color: Colors.black,
+                                child: RiveAnimation.asset(
+                                  '/images/horiz.riv',
+                                ),
+                              ),
+                              Text('Projects'),
+                              Container(
+                                width: 30.w,
+                                height: 100.h,
+                                // color: Colors.black,
+                                child: RiveAnimation.asset(
+                                  '/images/ver.riv',
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 200,
+                  ),
+
+                  ///skills
+                  Text('Skills'),
+                  Text('Skills'),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Container(
+                        // color: Colors.red,
+                        width: MediaQuery.of(context).size.width * .4,
+                        child: ExpansionTile(
+                          onExpansionChanged: (val) {
+                            // setState(() {
+                            //   expansion1 = val;
+                            // });
+                          },
+                          title: Text('Frontend Dev'),
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ProgressbarAnimation(
+                              number: 0.9,
+                              text: 'CSS',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ProgressbarAnimation(
+                              number: 0.5,
+                              text: 'CSS',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ProgressbarAnimation(
+                              number: 0.8,
+                              text: 'CSS',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ProgressbarAnimation(
+                              number: 0.4,
+                              text: 'CSS',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * .4,
+                        child: ExpansionTile(
+                          onExpansionChanged: (val) {
+                            // setState(() {
+                            //   expansion1 = val;
+                            // });
+                          },
+                          title: Text('Frontend Dev'),
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ProgressbarAnimation(
+                              number: 0.9,
+                              text: 'CSS',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ProgressbarAnimation(
+                              number: 0.5,
+                              text: 'CSS',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ProgressbarAnimation(
+                              number: 0.8,
+                              text: 'CSS',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            ProgressbarAnimation(
+                              number: 0.4,
+                              text: 'CSS',
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 250,
+                  ),
 
                   Container(
-                    height: 200,
-                    width: 450,
-                    color: Colors.red,
-                    child: Swiper(
-                      autoplay: false,
-                      containerHeight: 100,
-                      containerWidth: 100,
-                      itemBuilder: (BuildContext context, int index) {
-                        if (index == 0)
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Container(
-                                  width: 250,
-                                  height: 150,
-                                  clipBehavior: Clip.antiAlias,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                  ),
-                                  child: Image.asset(
-                                    'assets/images/about.jpg',
-                                    fit: BoxFit.cover,
-                                  )),
-                              Container(
-                                  alignment: Alignment.center,
-                                  child: Text('lol')),
-                            ],
-                          );
-                        if (index == 1)
-                          return Container(
-                              alignment: Alignment.center, child: Text('lol2'));
-                        if (index == 2)
-                          return Container(
-                              alignment: Alignment.center, child: Text('lol3'));
-                        return Text('pp');
-                      },
-                      itemCount: 3,
-                      pagination: SwiperPagination(),
-                      control: SwiperControl(),
+                    width: 100,
+                    height: 100,
+                    color: Colors.black,
+                    child: RiveAnimation.asset(
+                      '/images/horiz.riv',
                     ),
+                  ),
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.black,
+                    child: RiveAnimation.asset(
+                      '/images/ver.riv',
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 100,
                   ),
 
                   SizedBox(
@@ -1165,156 +1352,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     height: 250,
                   ),
 
-                  ///about
-                  Text('About Me'),
-                  Text('intro'),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        height: 300,
-                        width: 300,
-                        color: Colors.red,
-                        child: Image.asset(
-                          'assets/images/about.jpg',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 250,
-                            child: Text(
-                                'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quas sit tempore temporibus velit aspernatur, itaque quibusdam alias voluptatum pariatur?'),
-                          ),
-                          ButtonElevated(
-                            text: 'Download CV',
-                            icons: Icon(Icons.download),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                    ],
-                  ),
-
                   ///skills
-
-                  Text('Skills'),
-                  Text('Skills'),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        // color: Colors.red,
-                        width: 250,
-                        child: ExpansionTile(
-                          onExpansionChanged: (val) {
-                            // setState(() {
-                            //   expansion1 = val;
-                            // });
-                          },
-                          title: Text('Frontend Dev'),
-                          children: [
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ProgressbarAnimation(
-                              number: 0.9,
-                              text: 'CSS',
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ProgressbarAnimation(
-                              number: 0.5,
-                              text: 'CSS',
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ProgressbarAnimation(
-                              number: 0.8,
-                              text: 'CSS',
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ProgressbarAnimation(
-                              number: 0.4,
-                              text: 'CSS',
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 250,
-                        child: ExpansionTile(
-                          onExpansionChanged: (val) {
-                            // setState(() {
-                            //   expansion1 = val;
-                            // });
-                          },
-                          title: Text('Frontend Dev'),
-                          children: [
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ProgressbarAnimation(
-                              number: 0.9,
-                              text: 'CSS',
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ProgressbarAnimation(
-                              number: 0.5,
-                              text: 'CSS',
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ProgressbarAnimation(
-                              number: 0.8,
-                              text: 'CSS',
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            ProgressbarAnimation(
-                              number: 0.4,
-                              text: 'CSS',
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 250,
-                  ),
 
                   // Stack(
                   //   children: <Widget>[

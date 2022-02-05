@@ -5,20 +5,28 @@ ThemeData k_darkTheme = ThemeData(
     accentColor: Colors.red,
     brightness: Brightness.dark,
     backgroundColor: Colors.lightBlue,
-    scaffoldBackgroundColor: Colors.deepPurple,
+    scaffoldBackgroundColor: Color(0xff191627),
     highlightColor: Colors.transparent,
     splashColor: Colors.transparent,
     primaryColor: Colors.amber,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent),
+      overlayColor: MaterialStateProperty.all(Colors.deepPurple),
+    )),
     textTheme: const TextTheme(
       headline1: TextStyle(
-          fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.blue),
+          fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.white),
+      headline2: TextStyle(
+          fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.white70),
       headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
       bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
     ),
     buttonTheme: ButtonThemeData(
-      buttonColor: Colors.amber,
-      disabledColor: Colors.grey,
-    ));
+        buttonColor: Colors.amber,
+        disabledColor: Colors.grey,
+        
+        hoverColor: Colors.deepPurpleAccent));
 
 ThemeData k_lightTheme = ThemeData(
     accentColor: Colors.pink,
@@ -27,9 +35,15 @@ ThemeData k_lightTheme = ThemeData(
     primaryColor: Colors.red,
     highlightColor: Colors.transparent,
     splashColor: Colors.transparent,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent),
+    )),
     textTheme: const TextTheme(
       headline1: TextStyle(
-          fontSize: 72.0, fontWeight: FontWeight.bold, color: Colors.amber),
+          fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black),
+      headline2: TextStyle(
+          fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.black54),
       headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
       bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
     ),

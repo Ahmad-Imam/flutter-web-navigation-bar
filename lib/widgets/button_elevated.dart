@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ButtonElevated extends StatefulWidget {
@@ -16,31 +17,38 @@ class _ButtonElevatedState extends State<ButtonElevated> {
   bool boxWidth = false;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(),
-      onPressed: () {},
-      onHover: (val) {
-        setState(() {
-          boxWidth = val;
-        });
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            widget.text,
-            style: Get.textTheme.subtitle1!.copyWith(
-              color: context.theme.cardColor,
-              fontSize: 15,
+    return Container(
+      width: 120,
+      height: 50.h,
+      alignment: Alignment.center,
+      child: ElevatedButton(
+        style: context.theme.elevatedButtonTheme.style!.copyWith(),
+        onPressed: () {},
+        onHover: (val) {
+          setState(() {
+            boxWidth = val;
+          });
+        },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Container(
+                width: 20,
+                child: Text(
+                  widget.text,
+                  style: TextStyle(color: Colors.white70, fontSize: 12),
+                ),
+              ),
             ),
-          ),
-          AnimatedContainer(
-            width: boxWidth ? 5 : 10,
-            curve: Curves.decelerate,
-            duration: Duration(milliseconds: 300),
-          ),
-          widget.icons,
-        ],
+            AnimatedContainer(
+              width: boxWidth ? 0 : 10,
+              curve: Curves.decelerate,
+              duration: Duration(milliseconds: 300),
+            ),
+            Expanded(child: widget.icons),
+          ],
+        ),
       ),
     );
     ;
