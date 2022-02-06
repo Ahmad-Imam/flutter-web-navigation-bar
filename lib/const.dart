@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 ThemeData k_darkTheme = ThemeData(
     accentColor: Colors.red,
     brightness: Brightness.dark,
-    backgroundColor: Colors.lightBlue,
+    backgroundColor: Colors.amber,
     scaffoldBackgroundColor: Color(0xff191627),
     highlightColor: Colors.transparent,
     splashColor: Colors.transparent,
@@ -25,13 +25,12 @@ ThemeData k_darkTheme = ThemeData(
     buttonTheme: ButtonThemeData(
         buttonColor: Colors.amber,
         disabledColor: Colors.grey,
-        
         hoverColor: Colors.deepPurpleAccent));
 
 ThemeData k_lightTheme = ThemeData(
     accentColor: Colors.pink,
     brightness: Brightness.light,
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.deepPurple,
     primaryColor: Colors.red,
     highlightColor: Colors.transparent,
     splashColor: Colors.transparent,
