@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nav/LinePainter.dart';
 import 'package:flutter_nav/const.dart';
@@ -150,6 +151,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   bool expansion1 = false;
   bool circle1 = false;
   bool txtanimation = false;
+  bool serviceHover1 = false;
+  bool serviceHover2 = false;
+  bool serviceHover3 = false;
 
   late AnimationController animationControllerLine1;
   late Animation animationLine1;
@@ -278,356 +282,191 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   //   ),
                   // ),
 
+                  // Container(
+                  //   width: 100,
+                  //   height: 100,
+                  //   color: Colors.black,
+                  //   child: RiveAnimation.asset(
+                  //     '/images/horiz.riv',
+                  //   ),
+                  // ),
+                  // Container(
+                  //   width: 100,
+                  //   height: 100,
+                  //   color: Colors.black,
+                  //   child: RiveAnimation.asset(
+                  //     '/images/ver.riv',
+                  //   ),
+                  // ),
 
-                  ///qualification
-                  Text('qualificatiom'),
+                  ///services
+                  Text('service'),
                   InkWell(
-                      onTap: () {
-                        setState(() {
-                          circle1 = !circle1;
-                        });
-
-                        animationControllerLine1.forward();
-                        // animationControllerContainerLeft1.drive(CurveTween(curve: Curves.fastOutSlowIn));
-                        // animationControllerContainerLeft1.forward();
-                        // animationControllerOpacity.forward();
-                        // animationControllerContainerRight1.forward();
-                        print(animationControllerContainerLeft1.value);
-                        print(animationControllerContainerLeft1.value);
-                      },
-                      child: Text('journey')),
-
-                  TabBar(
-                    labelColor: Colors.amber,
-                    indicatorColor: Colors.brown.withOpacity(0),
-                    tabs: [
-                      Tab(
-                        icon: Icon(Icons.directions_bike),
+                    child: Text('offer'),
+                    onTap: () {},
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width: 20,
                       ),
-                      Tab(
-                        icon: Icon(
-                          Icons.directions_car,
+                      InkWell(
+                        onTap: () {},
+                        onHover: (lol) {
+                          setState(() {
+                            serviceHover3 = lol;
+                          });
+                        },
+                        child: AnimatedContainer(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: Colors.red,
+                            boxShadow: [
+                              BoxShadow(
+                                color:
+                                    serviceHover3 ? Colors.grey : Colors.black,
+                                blurRadius: 2.0,
+                                spreadRadius: 0.0,
+                                offset: Offset(
+                                    2.0, 2.0), // shadow direction: bottom right
+                              )
+                            ],
+                          ),
+                          height: 350,
+                          width: MediaQuery.of(context).size.width * .3,
+                          alignment: Alignment.centerLeft,
+                          duration: Duration(milliseconds: 500),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add),
+                                Text('UI'),
+                                Container(
+                                  alignment: Alignment.center,
+
+                                  // width: 120,
+                                  child: ButtonElevated(
+                                      text: 'View More',
+                                      icons: Icon(Icons.arrow_back_ios)),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        onHover: (lol) {
+                          setState(() {
+                            serviceHover2 = lol;
+                          });
+                        },
+                        child: AnimatedContainer(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: Colors.red,
+                            boxShadow: [
+                              BoxShadow(
+                                color:
+                                    serviceHover2 ? Colors.grey : Colors.black,
+                                blurRadius: 2.0,
+                                spreadRadius: 0.0,
+                                offset: Offset(
+                                    2.0, 2.0), // shadow direction: bottom right
+                              )
+                            ],
+                          ),
+                          height: 350,
+                          width: MediaQuery.of(context).size.width * .3,
+                          alignment: Alignment.centerLeft,
+                          duration: Duration(milliseconds: 500),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add),
+                                Text('UI'),
+                                Container(
+                                  alignment: Alignment.center,
+
+                                  // width: 120,
+                                  child: ButtonElevated(
+                                      text: 'View More',
+                                      icons: Icon(Icons.arrow_back_ios)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        onHover: (lol) {
+                          setState(() {
+                            serviceHover1 = lol;
+                          });
+                        },
+                        child: AnimatedContainer(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                            color: Colors.red,
+                            boxShadow: [
+                              BoxShadow(
+                                color:
+                                    serviceHover1 ? Colors.grey : Colors.black,
+                                blurRadius: 2.0,
+                                spreadRadius: 0.0,
+                                offset: Offset(
+                                    2.0, 2.0), // shadow direction: bottom right
+                              )
+                            ],
+                          ),
+                          height: 350,
+                          width: MediaQuery.of(context).size.width * .3,
+                          alignment: Alignment.centerLeft,
+                          duration: Duration(milliseconds: 500),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add),
+                                Text('UI'),
+                                Container(
+                                  alignment: Alignment.center,
+
+                                  // width: 120,
+                                  child: ButtonElevated(
+                                      text: 'View More',
+                                      icons: Icon(Icons.arrow_back_ios)),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
                       ),
                     ],
                   ),
 
-                  // create widgets for each tab bar here
-                  Container(
-                    height: 300,
-                    // color: Colors.black87,
-                    child: TabBarView(
-                      children: [
-                        // first tab bar view widget
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * .3,
-                              alignment: Alignment.center,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 100,
-                                    width:
-                                        MediaQuery.of(context).size.width * .3,
-                                    child: Stack(children: [
-                                      AnimatedPositioned(
-                                        curve: Curves.easeInOut,
-                                        duration: Duration(seconds: 2),
-                                        left: circle1
-                                            ? MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0
-                                            : MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                -.5,
-                                        child: AnimatedOpacity(
-                                          opacity: circle1 ? 1 : 0,
-                                          curve: Curves.easeInOut,
-                                          duration: Duration(seconds: 2),
-                                          child: Container(
-                                            height: 100,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .3,
-                                            color: Colors.red,
-                                            child: Column(
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                      '{animationControllerContainerLeft1.value}'),
-                                                ),
-                                                Text('Computsser'),
-                                                Text('Computer'),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ]),
-                                  ),
-                                  SizedBox(
-                                    height: 90,
-                                  ),
-                                  Container(
-                                    height: 100,
-                                    width:
-                                        MediaQuery.of(context).size.width * .3,
-                                    child: Stack(children: [
-                                      AnimatedPositioned(
-                                        curve: Curves.easeInOut,
-                                        duration: Duration(seconds: 2),
-                                        left: circle1
-                                            ? MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0
-                                            : MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                -.5,
-                                        child: AnimatedOpacity(
-                                          opacity: circle1 ? 1 : 0,
-                                          curve: Curves.easeInOut,
-                                          duration: Duration(seconds: 2),
-                                          child: Container(
-                                            height: 100,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                .3,
-                                            color: Colors.red,
-                                            child: Column(
-                                              children: [
-                                                Expanded(
-                                                  child: Text(
-                                                      '{animationControllerContainerLeft1.value}'),
-                                                ),
-                                                Text('Computsser'),
-                                                Text('Computer'),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ]),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Container(
-                              height: 390,
-                              width: 10,
-                              // color: Colors.green,
-                              child: Stack(
-                                children: [
-                                  ///line1
-                                  AnimatedPositioned(
-                                    top: circle1 ? 10 : -100,
-                                    left: 3,
-                                    duration: Duration(seconds: 2),
-                                    child: Container(
-                                      height: 90,
-                                      alignment: Alignment.center,
-                                      child: RotatedBox(
-                                          quarterTurns: 1,
-                                          child: AnimatedBuilder(
-                                              animation: animationLine1,
-                                              builder: (context, child) {
-                                                return LinearProgressIndicator(
-                                                  backgroundColor: context
-                                                      .theme.backgroundColor,
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                              Color?>(
-                                                          context.theme
-                                                              .backgroundColor),
-                                                  value:
-                                                      animationControllerLine1
-                                                          .value,
-                                                );
-                                              })),
-                                    ),
-                                  ),
-
-                                  ///circle1
-                                  AnimatedPositioned(
-                                    top: circle1 ? 0 : 300,
-                                    duration: Duration(seconds: 2),
-                                    curve: Curves.easeInOut,
-                                    child: Container(
-                                      height: 10,
-                                      width: 10,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .theme.textTheme.headline1?.color,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(5),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-
-                                  ///line2
-                                  AnimatedPositioned(
-                                    top: 110,
-                                    left: 3,
-                                    duration: Duration(seconds: 2),
-                                    child: Container(
-                                      height: 90,
-                                      alignment: Alignment.center,
-                                      child: RotatedBox(
-                                          quarterTurns: 1,
-                                          child: AnimatedBuilder(
-                                              animation: animationLine1,
-                                              builder: (context, child) {
-                                                return LinearProgressIndicator(
-                                                  backgroundColor: context
-                                                      .theme.backgroundColor,
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                              Color?>(
-                                                          context.theme
-                                                              .backgroundColor),
-                                                  value:
-                                                      animationControllerLine1
-                                                          .value,
-                                                );
-                                              })),
-                                    ),
-                                  ),
-
-                                  ///circle2
-                                  AnimatedPositioned(
-                                    top: circle1 ? 100 : 300,
-                                    duration: Duration(seconds: 2),
-                                    curve: Curves.easeInOut,
-                                    child: Container(
-                                      height: 10,
-                                      width: 10,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .theme.textTheme.headline1?.color,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(5),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-
-                                  ///line3
-                                  AnimatedPositioned(
-                                    top: circle1 ? 210 : 310,
-                                    left: 3,
-                                    duration: Duration(seconds: 2),
-                                    child: Container(
-                                      height: 90,
-                                      alignment: Alignment.center,
-                                      child: RotatedBox(
-                                          quarterTurns: 1,
-                                          child: AnimatedBuilder(
-                                              animation: animationLine1,
-                                              builder: (context, child) {
-                                                return LinearProgressIndicator(
-                                                  backgroundColor: context
-                                                      .theme.backgroundColor,
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                              Color?>(
-                                                          context.theme
-                                                              .backgroundColor),
-                                                  value:
-                                                      animationControllerLine1
-                                                          .value,
-                                                );
-                                              })),
-                                    ),
-                                  ),
-
-                                  ///circle3
-                                  AnimatedPositioned(
-                                    top: circle1 ? 200 : 300,
-                                    duration: Duration(seconds: 2),
-                                    curve: Curves.easeInOut,
-                                    child: Container(
-                                      height: 10,
-                                      width: 10,
-                                      decoration: BoxDecoration(
-                                        color: context
-                                            .theme.textTheme.headline1?.color,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(5),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 50,
-                            ),
-                            Container(
-                              height: 100,
-                              width: MediaQuery.of(context).size.width * .3,
-                              child: Stack(children: [
-                                AnimatedPositioned(
-                                  curve: Curves.easeInOut,
-                                  duration: Duration(seconds: 2),
-                                  right: circle1
-                                      ? MediaQuery.of(context).size.width * 0
-                                      : MediaQuery.of(context).size.width * -.5,
-                                  child: AnimatedOpacity(
-                                    opacity: circle1 ? 1 : 0,
-                                    curve: Curves.easeInOut,
-                                    duration: Duration(seconds: 2),
-                                    child: Container(
-                                      height: 100,
-                                      width: MediaQuery.of(context).size.width *
-                                          .3,
-                                      color: Colors.red,
-                                      child: Column(
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                                '{animationControllerContainerLeft1.value}'),
-                                          ),
-                                          Text('Computsser'),
-                                          Text('Computer'),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ]),
-                            ),
-                          ],
-                        ),
-
-                        // second tab bar viiew widget
-                        Container(
-                          color: Colors.pink,
-                          child: Center(
-                            child: Text(
-                              'Car',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
                   SizedBox(
-                    height: 250,
+                    height: 100,
                   ),
-
 
                   ///intro
                   ResponsiveWidget.isSmallScreen(context)
@@ -858,7 +697,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   ),
                                   Container(
                                     width:
-                                        MediaQuery.of(context).size.width * .4,
+                                        MediaQuery.of(context).size.width * .35,
                                     color: Colors.red,
                                     alignment: Alignment.center,
                                     child: Text(
@@ -1284,6 +1123,485 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     height: 200,
                   ),
 
+                  ///qualification
+                  Text('qualificatiom'),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          circle1 = !circle1;
+                        });
+
+                        animationControllerLine1.forward();
+                        // animationControllerContainerLeft1.drive(CurveTween(curve: Curves.fastOutSlowIn));
+                        // animationControllerContainerLeft1.forward();
+                        // animationControllerOpacity.forward();
+                        // animationControllerContainerRight1.forward();
+                        print(animationControllerContainerLeft1.value);
+                        print(animationControllerContainerLeft1.value);
+                      },
+                      child: Text('journey')),
+
+                  TabBar(
+                    labelColor: context.theme.backgroundColor,
+                    indicatorColor: Colors.transparent,
+                    tabs: [
+                      Tab(
+                        icon: Icon(Icons.directions_bike),
+                      ),
+                      Tab(
+                        icon: Icon(
+                          Icons.directions_car,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // create widgets for each tab bar here
+                  Container(
+                    height: 400,
+                    // color: Colors.red,
+                    width: MediaQuery.of(context).size.width,
+                    // color: Colors.black87,
+                    child: TabBarView(
+                      children: [
+                        // first tab bar view widget
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * .3,
+                              // color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 120,
+                                    width:
+                                        MediaQuery.of(context).size.width * .3,
+                                    child: Stack(children: [
+                                      AnimatedPositioned(
+                                        curve: Curves.easeInOut,
+                                        duration: Duration(seconds: 2),
+                                        left: circle1
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                -.5,
+                                        child: AnimatedOpacity(
+                                          opacity: circle1 ? 1 : 0,
+                                          curve: Curves.easeInOut,
+                                          duration: Duration(seconds: 2),
+                                          child: Container(
+                                            height: 100,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .3,
+                                            // color: Colors.red,
+                                            padding: EdgeInsets.only(left: 5),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Secondary School Certificate',
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 15),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'Ideal School and College',
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 13),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'GPA: 5.00 / 5.00',
+                                                  style: context
+                                                      .textTheme.headline2
+                                                      ?.copyWith(fontSize: 13),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  '- May 2014',
+                                                  style: context
+                                                      .textTheme.headline2
+                                                      ?.copyWith(fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                                  ),
+                                  SizedBox(
+                                    height: 120,
+                                  ),
+                                  Container(
+                                    height: 150,
+                                    width:
+                                        MediaQuery.of(context).size.width * .3,
+                                    child: Stack(children: [
+                                      AnimatedPositioned(
+                                        curve: Curves.easeInOut,
+                                        duration: Duration(seconds: 2),
+                                        left: circle1
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                -.5,
+                                        child: AnimatedOpacity(
+                                          opacity: circle1 ? 1 : 0,
+                                          curve: Curves.easeInOut,
+                                          duration: Duration(seconds: 2),
+                                          child: Container(
+                                            height: 150,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .3,
+                                            // color: Colors.red,
+                                            padding: EdgeInsets.only(left: 5),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  'Bachelor of Science',
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 15),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'Computer Science and Engineering',
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 14),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'Islamic University of Technology',
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 13),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'GPA: 5.00 / 5.00',
+                                                  style: context
+                                                      .textTheme.headline2
+                                                      ?.copyWith(fontSize: 13),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  '- May 2014',
+                                                  style: context
+                                                      .textTheme.headline2
+                                                      ?.copyWith(fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 50,
+                            ),
+                            Container(
+                              height: 390,
+                              width: 10,
+                              // color: Colors.green,
+                              child: Stack(
+                                children: [
+                                  ///line1
+                                  AnimatedPositioned(
+                                    top: circle1 ? 10 : -100,
+                                    left: 3,
+                                    duration: Duration(seconds: 2),
+                                    child: Container(
+                                      height: 90,
+                                      alignment: Alignment.center,
+                                      child: RotatedBox(
+                                          quarterTurns: 1,
+                                          child: AnimatedBuilder(
+                                              animation: animationLine1,
+                                              builder: (context, child) {
+                                                return LinearProgressIndicator(
+                                                  backgroundColor: context
+                                                      .theme.backgroundColor,
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                              Color?>(
+                                                          context.theme
+                                                              .backgroundColor),
+                                                  value:
+                                                      animationControllerLine1
+                                                          .value,
+                                                );
+                                              })),
+                                    ),
+                                  ),
+
+                                  ///circle1
+                                  AnimatedPositioned(
+                                    top: circle1 ? 0 : 400,
+                                    duration: Duration(seconds: 2),
+                                    curve: Curves.easeInOut,
+                                    child: Container(
+                                      height: 10,
+                                      width: 10,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .theme.textTheme.headline1?.color,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  ///line2
+                                  AnimatedPositioned(
+                                    top: 100,
+                                    left: 3,
+                                    duration: Duration(seconds: 2),
+                                    child: Container(
+                                      height: 100,
+                                      alignment: Alignment.center,
+                                      child: RotatedBox(
+                                          quarterTurns: 1,
+                                          child: AnimatedBuilder(
+                                              animation: animationLine1,
+                                              builder: (context, child) {
+                                                return LinearProgressIndicator(
+                                                  backgroundColor: context
+                                                      .theme.backgroundColor,
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                              Color?>(
+                                                          context.theme
+                                                              .backgroundColor),
+                                                  value:
+                                                      animationControllerLine1
+                                                          .value,
+                                                );
+                                              })),
+                                    ),
+                                  ),
+
+                                  ///circle2
+                                  AnimatedPositioned(
+                                    top: circle1 ? 120 : 400,
+                                    duration: Duration(seconds: 2),
+                                    curve: Curves.easeInOut,
+                                    child: Container(
+                                      height: 10,
+                                      width: 10,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .theme.textTheme.headline1?.color,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  ///line3
+                                  AnimatedPositioned(
+                                    top: circle1 ? 200 : 400,
+                                    left: 3,
+                                    duration: Duration(seconds: 2),
+                                    child: Container(
+                                      height: 150,
+                                      alignment: Alignment.center,
+                                      child: RotatedBox(
+                                        quarterTurns: 1,
+                                        child: LinearProgressIndicator(
+                                          backgroundColor:
+                                              context.theme.backgroundColor,
+                                          valueColor: AlwaysStoppedAnimation<
+                                                  Color?>(
+                                              context.theme.backgroundColor),
+                                          value: animationControllerLine1.value,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  ///circle3
+                                  AnimatedPositioned(
+                                    top: circle1 ? 220 : 400,
+                                    duration: Duration(seconds: 2),
+                                    curve: Curves.easeInOut,
+                                    child: Container(
+                                      height: 10,
+                                      width: 10,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .theme.textTheme.headline1?.color,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 50,
+                            ),
+                            Column(
+                              children: [
+                                SizedBox(
+                                  height: 130,
+                                ),
+                                Container(
+                                  height: 100,
+                                  width: MediaQuery.of(context).size.width * .3,
+                                  // color: Colors.blue,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        height: 100,
+                                        child: Stack(children: [
+                                          AnimatedPositioned(
+                                            curve: Curves.easeInOut,
+                                            duration: Duration(seconds: 2),
+                                            right: circle1
+                                                ? MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    -.5,
+                                            child: AnimatedOpacity(
+                                              opacity: circle1 ? 1 : 0,
+                                              curve: Curves.easeInOut,
+                                              duration: Duration(seconds: 2),
+                                              child: Container(
+                                                height: 100,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .3,
+                                                // color: Colors.red,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    Text(
+                                                      'Secondary School Certificate',
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                      style: context
+                                                          .textTheme.headline1
+                                                          ?.copyWith(
+                                                              fontSize: 15),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                      'Ideal School and College',
+                                                      style: context
+                                                          .textTheme.headline1
+                                                          ?.copyWith(
+                                                              fontSize: 13),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                      'GPA: 5.00 / 5.00',
+                                                      style: context
+                                                          .textTheme.headline2
+                                                          ?.copyWith(
+                                                              fontSize: 13),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                      '- May 2014',
+                                                      style: context
+                                                          .textTheme.headline2
+                                                          ?.copyWith(
+                                                              fontSize: 13),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+
+                        // second tab bar viiew widget
+                        Container(
+                          color: Colors.pink,
+                          child: Center(
+                            child: Text(
+                              'Car',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: 250,
+                  ),
 
                   ///skills
                   Text('Skills'),
@@ -1307,7 +1625,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             //   expansion1 = val;
                             // });
                           },
-                          title: Text('Frontend Dev'),
+                          title: Text(
+                            'Frontend Dev',
+                            style: context.textTheme.headline1
+                                ?.copyWith(fontSize: 16),
+                          ),
                           children: [
                             SizedBox(
                               height: 20,
@@ -1351,7 +1673,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                             //   expansion1 = val;
                             // });
                           },
-                          title: Text('Frontend Dev'),
+                          title: Text(
+                            'Frontend Dev',
+                            style: context.textTheme.headline1
+                                ?.copyWith(fontSize: 16),
+                          ),
                           children: [
                             SizedBox(
                               height: 20,
@@ -1394,94 +1720,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   ),
                   SizedBox(
                     height: 250,
-                  ),
-
-                  Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.black,
-                    child: RiveAnimation.asset(
-                      '/images/horiz.riv',
-                    ),
-                  ),
-                  Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.black,
-                    child: RiveAnimation.asset(
-                      '/images/ver.riv',
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: 100,
-                  ),
-
-                  SizedBox(
-                    height: 200,
-                  ),
-
-                  ///services
-                  Text('service'),
-                  Text('offer'),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        child: HoverContainer(
-                          height: 350,
-                          width: 260,
-                          color: Colors.red,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 20),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Icon(Icons.add),
-                                Text('UI'),
-                                Container(
-                                  width: 140,
-                                  child: ButtonElevated(
-                                      text: 'View More',
-                                      icons: Icon(Icons.arrow_back_ios)),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: HoverContainer(
-                          height: 350,
-                          width: 250,
-                          color: Colors.red,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: HoverContainer(
-                          height: 350,
-                          width: 250,
-                          color: Colors.red,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(
-                    height: 100,
                   ),
 
                   ///qualification

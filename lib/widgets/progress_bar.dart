@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/double_extensions.dart';
 
 class ProgressbarAnimation extends StatelessWidget {
@@ -22,22 +23,23 @@ class ProgressbarAnimation extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('${text}'),
+                  Text(
+                    '${text}',
+                    style: context.textTheme.headline1
+                        ?.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+                  ),
                   Text('${(gg * 100).toPrecision(0)}%'),
                 ],
               ),
-              
               LinearProgressIndicator(
-                backgroundColor: Colors.red,
+                backgroundColor: context.theme.backgroundColor,
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  Colors.amber,
+                  context.theme.primaryColor,
                 ),
                 value: gg,
               ),
             ],
           );
         });
-        
- 
   }
 }

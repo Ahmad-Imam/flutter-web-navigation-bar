@@ -6,9 +6,9 @@ ThemeData k_darkTheme = ThemeData(
     brightness: Brightness.dark,
     backgroundColor: Colors.amber,
     scaffoldBackgroundColor: Color(0xff191627),
-    highlightColor: Colors.transparent,
+    highlightColor: Colors.grey,
     splashColor: Colors.transparent,
-    primaryColor: Colors.amber,
+    primaryColor: Colors.red,
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all(Colors.deepPurpleAccent),
@@ -31,8 +31,8 @@ ThemeData k_lightTheme = ThemeData(
     accentColor: Colors.pink,
     brightness: Brightness.light,
     backgroundColor: Colors.deepPurple,
-    primaryColor: Colors.red,
-    highlightColor: Colors.transparent,
+    primaryColor: Colors.amber,
+    highlightColor: Colors.black,
     splashColor: Colors.transparent,
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
