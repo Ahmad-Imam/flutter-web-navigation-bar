@@ -33,6 +33,7 @@ dependencies:
   flutter_swiper_plus: ^2.0.4
   flutter_screenutil: ^5.1.1
   rive: ^0.8.1
+  animated_text_kit: ^4.2.1
   # card_swiper: ^2.0.1
 
 dev_dependencies:

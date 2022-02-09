@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_nav/LinePainter.dart';
@@ -31,47 +34,66 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     setState(() {
       _scrollPosition = _scrollController.position.pixels;
 
-      animationControllerContainerRight1.forward();
-      if (_scrollPosition > 00 && _scrollPosition < 400) {
-        circle1 = true;
-
-        animationControllerLine1.forward();
-      } else {
-        circle1 = false;
-      }
-
-      if (_scrollPosition > 600 && _scrollPosition <= 900) {
-        //  dynamic anim =  animationControllerLine1.drive(CurveTween(curve: Curves.bounceIn));
-        animationControllerLine1.forward();
-        // animationControllerContainerLeft1.drive(CurveTween(curve: Curves.fastOutSlowIn));
-        animationControllerContainerLeft1.forward();
-        animationControllerOpacity.forward();
-        animationControllerContainerRight1.forward();
-        print(animationControllerContainerLeft1.value);
-      }
-      if (_scrollPosition < 600) {
-        animationControllerLine1.reset();
-        animationControllerOpacity.reset();
-        animationControllerContainerRight1.reset();
-        animationControllerContainerLeft1.reset();
-      }
-      if (_scrollPosition > 900) {
-        animationControllerLine1.reverse();
-        animationControllerOpacity.reverse();
-        animationControllerContainerRight1.reverse();
-        animationControllerContainerLeft1.reverse();
-        print(animationControllerContainerLeft1.value);
-      }
-
       print('ooopppp $_scrollPosition');
     });
+
+    animationControllerContainerRight1.forward();
+    if (_scrollPosition > 00 && _scrollPosition < 400) {
+      circle1 = true;
+      print(circle1);
+
+      animationControllerLine1.forward();
+    } else {
+      circle1 = false;
+    }
+
+    if (_scrollPosition > 600 && _scrollPosition <= 900) {
+      //  dynamic anim =  animationControllerLine1.drive(CurveTween(curve: Curves.bounceIn));
+      animationControllerLine1.forward();
+      // animationControllerContainerLeft1.drive(CurveTween(curve: Curves.fastOutSlowIn));
+      animationControllerContainerLeft1.forward();
+      animationControllerOpacity.forward();
+      animationControllerContainerRight1.forward();
+      print(animationControllerContainerLeft1.value);
+    }
+    if (_scrollPosition < 600) {
+      animationControllerLine1.reset();
+      animationControllerOpacity.reset();
+      animationControllerContainerRight1.reset();
+      animationControllerContainerLeft1.reset();
+    }
+    if (_scrollPosition > 900) {
+      animationControllerLine1.reverse();
+      animationControllerOpacity.reverse();
+      animationControllerContainerRight1.reverse();
+      animationControllerContainerLeft1.reverse();
+      print(animationControllerContainerLeft1.value);
+    }
   }
 
   Test tst = Test();
 
+  testFuture() {
+    Timer(Duration(seconds: 0), () {
+      setState(() {
+        txtanimation = true;
+      });
+      print("Yeah, this line is printed after 3 seconds  and $txtanimation");
+    });
+
+    Timer(Duration(seconds: 2), () {
+      setState(() {
+        txtanimation = false;
+      });
+      print("Yeah, this line is printed lol 3 seconds  and $txtanimation");
+    });
+  }
+
   @override
   void initState() {
     tst.addtoList();
+
+    testFuture();
 
     print('pp');
     print(tst.lsts[0].pic[0]![0]);
@@ -127,6 +149,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   bool scrollDown = false;
   bool expansion1 = false;
   bool circle1 = false;
+  bool txtanimation = false;
 
   late AnimationController animationControllerLine1;
   late Animation animationLine1;
@@ -255,400 +278,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   //   ),
                   // ),
 
-                  ///intro
-                  ResponsiveWidget.isSmallScreen(context)
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              height: MediaQuery.of(context).size.height * .2,
-                              color: Colors.red,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  // HoverAnimatedContainer(
-                                  //   width: 200,
-                                  //   height: 200,
-                                  //   color: Colors.red,
-                                  //   hoverColor: Colors.green,
-                                  //   hoverHeight: 220,
-                                  //   hoverWidth: 220,
-                                  //   curve: Curves.easeInOutBack,
-                                  //   child: Text('lol'),
-                                  // ),
-                                  // Text('Lol',
-                                  //     style: Theme.of(context).textTheme.headline1),
-                                  // ElevatedButton(
-                                  //   style: ElevatedButton.styleFrom(),
-                                  //   onPressed: () {},
-                                  //   child: Text(
-                                  //     'press',
-                                  //     style: Get.textTheme.subtitle1!.copyWith(
-                                  //       color: Get.theme.primaryColor,
-                                  //     ),
-                                  //   ),
-                                  // )
-
-                                  Icon(Icons.facebook),
-
-                                  Icon(Icons.facebook),
-
-                                  Icon(Icons.facebook),
-                                ],
-                              ),
-                            ),
-                            // Container(
-                            //   color: Colors.red,
-                            //   child: Image.asset(
-                            //     'assets/images/ahmad.jpg',
-                            //     height: 400,
-                            //     width: 400,
-                            //     fit: BoxFit.cover,
-                            //   ),
-                            // ),
-
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * .3,
-                                  width: MediaQuery.of(context).size.width * .6,
-                                  // alignment: Alignment.topCenter,
-                                  child: Image.asset(
-                                    'assets/images/about.jpg',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * .45,
-                                  width: MediaQuery.of(context).size.width * .6,
-                                  // color: Colors.red,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        height: 20.h,
-                                      ),
-                                      Text(
-                                        'Hi I am a Bot',
-                                        style: context.textTheme.headline1!
-                                            .copyWith(
-                                          fontSize: 25,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 20.h,
-                                      ),
-                                      SizedBox(
-                                        height: 20.h,
-                                      ),
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                .4,
-                                        color: Colors.red,
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          'Lorem ipsum, dolor sit amet cons adipisicing elit. Ipsam debitisvoluptates consequuntur repellat nulla possimus?',
-                                          style: Get.theme.textTheme.headline2!
-                                              .copyWith(
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 50.h,
-                                      ),
-                                      ButtonElevated(
-                                        icons: Icon(Icons.arrow_forward_ios),
-                                        text: 'Press',
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * .1,
-                            ),
-                          ],
-                        )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: 20,
-                            ),
-
-                            Container(
-                              height: MediaQuery.of(context).size.height * .2,
-                              color: Colors.red,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  // HoverAnimatedContainer(
-                                  //   width: 200,
-                                  //   height: 200,
-                                  //   color: Colors.red,
-                                  //   hoverColor: Colors.green,
-                                  //   hoverHeight: 220,
-                                  //   hoverWidth: 220,
-                                  //   curve: Curves.easeInOutBack,
-                                  //   child: Text('lol'),
-                                  // ),
-                                  // Text('Lol',
-                                  //     style: Theme.of(context).textTheme.headline1),
-                                  // ElevatedButton(
-                                  //   style: ElevatedButton.styleFrom(),
-                                  //   onPressed: () {},
-                                  //   child: Text(
-                                  //     'press',
-                                  //     style: Get.textTheme.subtitle1!.copyWith(
-                                  //       color: Get.theme.primaryColor,
-                                  //     ),
-                                  //   ),
-                                  // )
-
-                                  Icon(Icons.facebook),
-
-                                  Icon(Icons.facebook),
-
-                                  Icon(Icons.facebook),
-                                ],
-                              ),
-                            ),
-                            // Container(
-                            //   color: Colors.red,
-                            //   child: Image.asset(
-                            //     'assets/images/ahmad.jpg',
-                            //     height: 400,
-                            //     width: 400,
-                            //     fit: BoxFit.cover,
-                            //   ),
-                            // ),
-
-                            Container(
-                              width: MediaQuery.of(context).size.width * .1,
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * .8,
-                              color: Colors.red,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Hi I am a Bot',
-                                    style:
-                                        context.textTheme.headline1!.copyWith(
-                                      fontSize: 25,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
-                                  SizedBox(
-                                    height: 20.h,
-                                  ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * .4,
-                                    color: Colors.red,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      'Lorem ipsum, dolor sit amet cons adipisicing elit. Ipsam debitisvoluptates consequuntur repellat nulla possimus?',
-                                      style: Get.theme.textTheme.headline2!
-                                          .copyWith(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 50.h,
-                                  ),
-                                  ButtonElevated(
-                                    icons: Icon(Icons.arrow_forward_ios),
-                                    text: 'Press',
-                                  ),
-                                  SizedBox(
-                                    height: 100,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * .1,
-                            ),
-                            Expanded(
-                              child: ClipPath(
-                                clipper: CustomClippersPath(),
-                                child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * .6,
-                                  width: MediaQuery.of(context).size.width * .4,
-                                  child: Image.asset(
-                                    'assets/images/about.jpg',
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                  SizedBox(
-                    height: 20.h,
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: InkWell(
-                      splashFactory: NoSplash.splashFactory,
-                      hoverColor: Colors.transparent,
-                      enableFeedback: false,
-                      onHover: (val) {
-                        print(val);
-                        setState(() {
-                          scrollDown = val;
-                        });
-                      },
-                      onTap: () {
-                        _scrollController.animateTo(600,
-                            duration: Duration(seconds: 1),
-                            curve: Curves.decelerate);
-                      },
-                      child: AnimatedContainer(
-                        duration: Duration(milliseconds: 500),
-                        padding: EdgeInsets.only(top: scrollDown ? 5 : 0),
-                        child: Row(
-                          children: [
-                            Icon(Icons.mouse),
-                            Text('Scroll Down'),
-                            Icon(Icons.arrow_drop_down),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * .2,
-                  ),
-
-                  ///about
-                  Text(
-                    'About Me',
-                    style: context.textTheme.headline1?.copyWith(
-                      fontSize: 25,
-                    ),
-                  ),
-
-                  ResponsiveWidget.isSmallScreen(context)
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * .05,
-                            ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * .3,
-                              width: MediaQuery.of(context).size.width * .8,
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                              ),
-                              child: Image.asset(
-                                'assets/images/about.jpg',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * .05,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * .8,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'small Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quas sit tempore temporibus velit aspernatur, itaque quibusdam alias voluptatum pariatur?',
-                                    style:
-                                        context.textTheme.headline2?.copyWith(
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height * .05,
-                            ),
-                            ButtonElevated(
-                              text: 'CV',
-                              icons: Icon(Icons.download),
-                            )
-                          ],
-                        )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * .2,
-                            ),
-                            Container(
-                              height: 300,
-                              width: MediaQuery.of(context).size.width * .3,
-                              decoration: BoxDecoration(
-                                color: Colors.red,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                              ),
-                              child: Image.asset(
-                                'assets/images/about.jpg',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * .4,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    width: 250,
-                                    child: Text(
-                                      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quas sit tempore temporibus velit aspernatur, itaque quibusdam alias voluptatum pariatur?',
-                                      style:
-                                          context.textTheme.headline2?.copyWith(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  ButtonElevated(
-                                    text: 'CV',
-                                    icons: Icon(Icons.download),
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                          ],
-                        ),
-
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * .2,
-                  ),
 
                   ///qualification
                   Text('qualificatiom'),
@@ -999,154 +628,654 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     height: 250,
                   ),
 
-                  ///portfolio final
-                  Text('Portfoliosss'),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * .7,
-                            width: MediaQuery.of(context).size.width * .8,
-                            color: Colors.blueAccent,
-                            child: Swiper(
-                              autoplay: false,
-                              itemCount: 3,
-                              // loop: true,
-                              // layout: SwiperLayout.DEFAULT,
-                              scrollDirection: Axis.vertical,
-                              pagination: SwiperPagination(),
-                              control: SwiperControl(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          .3,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              .7,
-                                      color: Colors.black,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 10),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            SizedBox(
-                                              height: 50.h,
-                                            ),
-                                            Text('${tst.lsts[index].name}'),
-                                            SizedBox(
-                                              height: 50.h,
-                                            ),
-                                            Text(
-                                                '${tst.lsts[index].description}'),
-                                            SizedBox(
-                                              height: 50.h,
-                                            ),
-                                            Text('-Feature 1'),
-                                            Text('-Feature 2'),
-                                            Text('-Feature 3'),
-                                            Text('-Feature 4'),
-                                          ],
-                                        ),
+
+                  ///intro
+                  ResponsiveWidget.isSmallScreen(context)
+                      //  || ResponsiveWidget.isMediumScreen(context)
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.height * .2,
+                              color: Colors.red,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  // HoverAnimatedContainer(
+                                  //   width: 200,
+                                  //   height: 200,
+                                  //   color: Colors.red,
+                                  //   hoverColor: Colors.green,
+                                  //   hoverHeight: 220,
+                                  //   hoverWidth: 220,
+                                  //   curve: Curves.easeInOutBack,
+                                  //   child: Text('lol'),
+                                  // ),
+                                  // Text('Lol',
+                                  //     style: Theme.of(context).textTheme.headline1),
+                                  // ElevatedButton(
+                                  //   style: ElevatedButton.styleFrom(),
+                                  //   onPressed: () {},
+                                  //   child: Text(
+                                  //     'press',
+                                  //     style: Get.textTheme.subtitle1!.copyWith(
+                                  //       color: Get.theme.primaryColor,
+                                  //     ),
+                                  //   ),
+                                  // )
+
+                                  Icon(Icons.facebook),
+
+                                  Icon(Icons.facebook),
+
+                                  Icon(Icons.facebook),
+                                ],
+                              ),
+                            ),
+                            // Container(
+                            //   color: Colors.red,
+                            //   child: Image.asset(
+                            //     'assets/images/ahmad.jpg',
+                            //     height: 400,
+                            //     width: 400,
+                            //     fit: BoxFit.cover,
+                            //   ),
+                            // ),
+
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * .3,
+                                  width: MediaQuery.of(context).size.width * .6,
+                                  // alignment: Alignment.topCenter,
+                                  child: Image.asset(
+                                    'assets/images/about.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * .45,
+                                  width: MediaQuery.of(context).size.width * .6,
+                                  // color: Colors.red,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 20.h,
                                       ),
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          .5,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              .7,
-                                      color: Colors.red,
-                                      alignment: Alignment.topCenter,
-                                      child: Swiper(
-                                        autoplay: false,
-                                        itemCount: 3,
-                                        // loop: true,
-                                        // layout: SwiperLayout.DEFAULT,
-                                        scrollDirection: Axis.horizontal,
-                                        pagination: SwiperPagination(),
-                                        layout: SwiperLayout.TINDER,
-
-                                        outer: true,
-                                        itemHeight:
-                                            MediaQuery.of(context).size.height *
-                                                .7,
-                                        itemWidth:
-                                            MediaQuery.of(context).size.width *
-                                                .3,
-
-                                        itemBuilder: (BuildContext context,
-                                            int indexHori) {
-                                          return Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                  '${tst.lsts[index].pic[indexHori]![1]}'),
-                                              Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      .5,
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      .8,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.blue,
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                      Radius.circular(10),
-                                                    ),
-                                                  ),
-                                                  child: Image.asset(
-                                                    '${tst.lsts[index].pic[indexHori]![0]}',
-                                                    fit: BoxFit.cover,
-                                                  )),
-                                            ],
-                                          );
+                                      AnimatedTextKit(
+                                        animatedTexts: [
+                                          WavyAnimatedText('Hi I am Ahmad Imam',
+                                              textStyle: context
+                                                  .textTheme.headline1!
+                                                  .copyWith(
+                                                fontSize: 25,
+                                              ),
+                                              speed:
+                                                  Duration(milliseconds: 200)),
+                                        ],
+                                        isRepeatingAnimation: true,
+                                        repeatForever: true,
+                                        onTap: () {
+                                          print("Tap Event");
                                         },
                                       ),
-                                    ),
-                                  ],
-                                );
-                              },
+                                      SizedBox(
+                                        height: 20.h,
+                                      ),
+                                      SizedBox(
+                                        height: 20.h,
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .4,
+                                        color: Colors.red,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          'Lorem ipsum, dolor sit amet cons adipisicing elit. Ipsam debitisvoluptates consequuntur repellat nulla possimus?',
+                                          style: Get.theme.textTheme.headline2!
+                                              .copyWith(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 50.h,
+                                      ),
+                                      ButtonElevated(
+                                        icons: Icon(Icons.arrow_forward_ios),
+                                        text: 'Press',
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text('Pages'),
-                              Container(
-                                width: 50.w,
-                                height: 60.h,
-                                // color: Colors.black,
-                                child: RiveAnimation.asset(
-                                  '/images/horiz.riv',
+                            Container(
+                              width: MediaQuery.of(context).size.width * .1,
+                            ),
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SizedBox(
+                              width: 20,
+                            ),
+
+                            Container(
+                              height: MediaQuery.of(context).size.height * .2,
+                              color: Colors.red,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  // HoverAnimatedContainer(
+                                  //   width: 200,
+                                  //   height: 200,
+                                  //   color: Colors.red,
+                                  //   hoverColor: Colors.green,
+                                  //   hoverHeight: 220,
+                                  //   hoverWidth: 220,
+                                  //   curve: Curves.easeInOutBack,
+                                  //   child: Text('lol'),
+                                  // ),
+                                  // Text('Lol',
+                                  //     style: Theme.of(context).textTheme.headline1),
+                                  // ElevatedButton(
+                                  //   style: ElevatedButton.styleFrom(),
+                                  //   onPressed: () {},
+                                  //   child: Text(
+                                  //     'press',
+                                  //     style: Get.textTheme.subtitle1!.copyWith(
+                                  //       color: Get.theme.primaryColor,
+                                  //     ),
+                                  //   ),
+                                  // )
+
+                                  Icon(Icons.facebook),
+
+                                  Icon(Icons.facebook),
+
+                                  Icon(Icons.facebook),
+                                ],
+                              ),
+                            ),
+                            // Container(
+                            //   color: Colors.red,
+                            //   child: Image.asset(
+                            //     'assets/images/ahmad.jpg',
+                            //     height: 400,
+                            //     width: 400,
+                            //     fit: BoxFit.cover,
+                            //   ),
+                            // ),
+
+                            Container(
+                              width: MediaQuery.of(context).size.width * .1,
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * .8,
+                              // color: Colors.red,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    // color: Colors.blue,
+                                    height: 50,
+                                    width: 200.w,
+                                    child: AnimatedTextKit(
+                                      animatedTexts: [
+                                        WavyAnimatedText('Hi I am Ahmad Imam',
+                                            textStyle: context
+                                                .textTheme.headline1!
+                                                .copyWith(
+                                              fontSize: 25,
+                                            ),
+                                            speed: Duration(milliseconds: 200)),
+                                      ],
+                                      isRepeatingAnimation: true,
+                                      repeatForever: true,
+                                      onTap: () {
+                                        print("Tap Event");
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .4,
+                                    color: Colors.red,
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      'Lorem ipsum, dolor sit amet cons adipisicing elit. Ipsam debitisvoluptates consequuntur repellat nulla possimus?',
+                                      style: Get.theme.textTheme.headline2!
+                                          .copyWith(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 50.h,
+                                  ),
+                                  ButtonElevated(
+                                    icons: Icon(Icons.arrow_forward_ios),
+                                    text: 'Press',
+                                  ),
+                                  SizedBox(
+                                    height: 100,
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            Expanded(
+                              child: ClipPath(
+                                clipper: CustomClippersPath(),
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * .6,
+                                  width: MediaQuery.of(context).size.width * .4,
+                                  child: Image.asset(
+                                    'assets/images/about.jpg',
+                                    fit: BoxFit.contain,
+                                  ),
                                 ),
                               ),
-                              Text('Projects'),
+                            ),
+                          ],
+                        ),
+
+                  SizedBox(
+                    height: 20.h,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: InkWell(
+                      splashFactory: NoSplash.splashFactory,
+                      hoverColor: Colors.transparent,
+                      enableFeedback: false,
+                      onHover: (val) {
+                        print(val);
+                        setState(() {
+                          scrollDown = val;
+                        });
+                      },
+                      onTap: () {
+                        _scrollController.animateTo(600,
+                            duration: Duration(seconds: 1),
+                            curve: Curves.decelerate);
+                      },
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 500),
+                        padding: EdgeInsets.only(top: scrollDown ? 5 : 0),
+                        child: Row(
+                          children: [
+                            Icon(Icons.mouse),
+                            Text('Scroll Down'),
+                            Icon(Icons.arrow_drop_down),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .2,
+                  ),
+
+                  ///about
+                  Text(
+                    'About Me',
+                    style: context.textTheme.headline1?.copyWith(
+                      fontSize: 25,
+                    ),
+                  ),
+
+                  ResponsiveWidget.isSmallScreen(context)
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * .05,
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * .3,
+                              width: MediaQuery.of(context).size.width * .8,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              child: Image.asset(
+                                'assets/images/about.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * .05,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * .8,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'small Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quas sit tempore temporibus velit aspernatur, itaque quibusdam alias voluptatum pariatur?',
+                                    style:
+                                        context.textTheme.headline2?.copyWith(
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * .05,
+                            ),
+                            ButtonElevated(
+                              text: 'CV',
+                              icons: Icon(Icons.download),
+                            )
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * .2,
+                            ),
+                            Container(
+                              height: 300,
+                              width: MediaQuery.of(context).size.width * .3,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              child: Image.asset(
+                                'assets/images/about.jpg',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * .4,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 250,
+                                    child: Text(
+                                      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda quas sit tempore temporibus velit aspernatur, itaque quibusdam alias voluptatum pariatur?',
+                                      style:
+                                          context.textTheme.headline2?.copyWith(
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  ButtonElevated(
+                                    text: 'CV',
+                                    icons: Icon(Icons.download),
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                          ],
+                        ),
+
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .2,
+                  ),
+
+                  ///portfolio final
+                  Text('Portfoliosss'),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 100,
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * .7,
+                        width: MediaQuery.of(context).size.width * .8,
+                        // color: Colors.blueAccent,
+                        child: Swiper(
+                          autoplay: false,
+                          itemCount: 3,
+                          // loop: true,
+                          // layout: SwiperLayout.DEFAULT,
+                          scrollDirection: Axis.vertical,
+                          pagination: SwiperPagination(),
+
+                          itemBuilder: (BuildContext context, int index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width * .3,
+                                  height:
+                                      MediaQuery.of(context).size.height * .7,
+                                  // color: Colors.black,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 50.h,
+                                        ),
+                                        Text(
+                                          '${tst.lsts[index].name}',
+                                          style: Get.theme.textTheme.headline1!
+                                              .copyWith(
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 50.h,
+                                        ),
+                                        Text(
+                                          '${tst.lsts[index].description}',
+                                          style: Get.theme.textTheme.headline2!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 50.h,
+                                        ),
+                                        Text(
+                                          '-Feature 1',
+                                          style: Get.theme.textTheme.headline2!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        Text(
+                                          '-Feature 2',
+                                          style: Get.theme.textTheme.headline2!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        Text(
+                                          '-Feature 3',
+                                          style: Get.theme.textTheme.headline2!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        Text(
+                                          '-Feature 4',
+                                          style: Get.theme.textTheme.headline2!
+                                              .copyWith(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: MediaQuery.of(context).size.width * .5,
+                                  height:
+                                      MediaQuery.of(context).size.height * .7,
+                                  // color: Colors.red,
+                                  alignment: Alignment.topCenter,
+                                  child: Swiper(
+                                    autoplay: false,
+                                    itemCount: 3,
+                                    // loop: true,
+                                    // layout: SwiperLayout.DEFAULT,
+                                    scrollDirection: Axis.horizontal,
+                                    pagination: SwiperPagination(),
+                                    layout: SwiperLayout.TINDER,
+
+                                    outer: true,
+                                    itemHeight:
+                                        MediaQuery.of(context).size.height * .7,
+                                    itemWidth:
+                                        MediaQuery.of(context).size.width * .3,
+
+                                    itemBuilder:
+                                        (BuildContext context, int indexHori) {
+                                      return Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '${tst.lsts[index].pic[indexHori]![1]}',
+                                            style: Get
+                                                .theme.textTheme.headline1!
+                                                .copyWith(
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          Container(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  .5,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  .8,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: BoxDecoration(
+                                                color: Colors.blue,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(10),
+                                                ),
+                                              ),
+                                              child: Image.asset(
+                                                '${tst.lsts[index].pic[indexHori]![0]}',
+                                                fit: BoxFit.cover,
+                                              )),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Column(
+                            children: [
                               Container(
-                                width: 30.w,
-                                height: 100.h,
-                                // color: Colors.black,
-                                child: RiveAnimation.asset(
-                                  '/images/ver.riv',
+                                height: 50,
+                                width: 40,
+                                // color: Colors.green,
+                                child: RotatedBox(
+                                  quarterTurns: -1,
+                                  child: Container(
+                                    child: AnimatedTextKit(
+                                      repeatForever: true,
+                                      animatedTexts: [
+                                        RotateAnimatedText(
+                                          'Pages',
+                                          textDirection: TextDirection.rtl,
+                                          textStyle: Get
+                                              .theme.textTheme.headline2!
+                                              .copyWith(
+                                            fontSize: 10,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
                           ),
+                          // Container(
+                          //   width: 50,
+                          //   height: 30,
+                          //   alignment: Alignment.topCenter,
+                          //   // color: Colors.black,
+                          //   child: RiveAnimation.asset(
+                          //     '/images/horiz.riv',
+                          //   ),
+                          // ),
+                          AnimatedTextKit(
+                            repeatForever: true,
+                            animatedTexts: [
+                              RotateAnimatedText(
+                                'Projects',
+                                textDirection: TextDirection.rtl,
+                                textStyle:
+                                    Get.theme.textTheme.headline2!.copyWith(
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
+                          ),
+                          // Container(
+                          //   alignment: Alignment.topCenter,
+                          //   width: 30,
+                          //   height: 50,
+                          //   // color: Colors.black,
+                          //   child: RiveAnimation.asset(
+                          //     '/images/ver.riv',
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],
@@ -1154,6 +1283,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   SizedBox(
                     height: 200,
                   ),
+
 
                   ///skills
                   Text('Skills'),
