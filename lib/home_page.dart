@@ -325,9 +325,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     indicatorColor: Colors.transparent,
                     tabs: [
                       Tab(
+                        child: Text('Education'),
                         icon: Icon(Icons.directions_bike),
                       ),
                       Tab(
+                        child: Text('Experience'),
                         icon: Icon(
                           Icons.directions_car,
                         ),
@@ -344,6 +346,406 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: TabBarView(
                       children: [
                         // first tab bar view widget
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              children: [
+                                SizedBox(
+                                  height: 130,
+                                ),
+                                Container(
+                                  height: 100,
+                                  width: MediaQuery.of(context).size.width * .3,
+                                  // color: Colors.blue,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        height: 100,
+                                        child: Stack(children: [
+                                          AnimatedPositioned(
+                                            curve: Curves.easeInOut,
+                                            duration: Duration(seconds: 2),
+                                            right: circle1
+                                                ? MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .5,
+                                            top: 0,
+                                            bottom: 0,
+                                            child: AnimatedOpacity(
+                                              opacity: circle1 ? 1 : 0,
+                                              curve: Curves.easeInOut,
+                                              duration: Duration(seconds: 2),
+                                              child: Container(
+                                                alignment: Alignment.topCenter,
+                                                height: 100,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    .3,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Executive Secretary',
+                                                      textAlign: TextAlign.left,
+                                                      style: context
+                                                          .textTheme.headline1
+                                                          ?.copyWith(
+                                                              fontSize: 15),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                      'IUT Computer Society',
+                                                      textAlign: TextAlign.left,
+                                                      style: context
+                                                          .textTheme.headline1
+                                                          ?.copyWith(
+                                                              fontSize: 13),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(
+                                                      'January 2020 - February 2021',
+                                                      textAlign: TextAlign.left,
+                                                      style: context
+                                                          .textTheme.headline2
+                                                          ?.copyWith(
+                                                              fontSize: 13),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 50,
+                            ),
+                            Container(
+                              height: 390,
+                              width: 10,
+                              // color: Colors.green,
+                              child: Stack(
+                                children: [
+                                  ///line1
+                                  AnimatedPositioned(
+                                    top: circle1 ? 10 : -100,
+                                    left: 3,
+                                    duration: Duration(seconds: 2),
+                                    child: Container(
+                                      height: 90,
+                                      alignment: Alignment.center,
+                                      child: RotatedBox(
+                                          quarterTurns: 1,
+                                          child: AnimatedBuilder(
+                                              animation: animationLine1,
+                                              builder: (context, child) {
+                                                return LinearProgressIndicator(
+                                                  backgroundColor: context
+                                                      .theme.backgroundColor,
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                              Color?>(
+                                                          context.theme
+                                                              .backgroundColor),
+                                                  value:
+                                                      animationControllerLine1
+                                                          .value,
+                                                );
+                                              })),
+                                    ),
+                                  ),
+
+                                  ///circle1
+                                  AnimatedPositioned(
+                                    top: circle1 ? 0 : 400,
+                                    duration: Duration(seconds: 2),
+                                    curve: Curves.easeInOut,
+                                    child: Container(
+                                      height: 10,
+                                      width: 10,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .theme.textTheme.headline1?.color,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  ///line2
+                                  AnimatedPositioned(
+                                    top: 100,
+                                    left: 3,
+                                    duration: Duration(seconds: 2),
+                                    child: Container(
+                                      height: 100,
+                                      alignment: Alignment.center,
+                                      child: RotatedBox(
+                                          quarterTurns: 1,
+                                          child: AnimatedBuilder(
+                                              animation: animationLine1,
+                                              builder: (context, child) {
+                                                return LinearProgressIndicator(
+                                                  backgroundColor: context
+                                                      .theme.backgroundColor,
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                              Color?>(
+                                                          context.theme
+                                                              .backgroundColor),
+                                                  value:
+                                                      animationControllerLine1
+                                                          .value,
+                                                );
+                                              })),
+                                    ),
+                                  ),
+
+                                  ///circle2
+                                  AnimatedPositioned(
+                                    top: circle1 ? 120 : 400,
+                                    duration: Duration(seconds: 2),
+                                    curve: Curves.easeInOut,
+                                    child: Container(
+                                      height: 10,
+                                      width: 10,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .theme.textTheme.headline1?.color,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  ///line3
+                                  AnimatedPositioned(
+                                    top: circle1 ? 200 : 400,
+                                    left: 3,
+                                    duration: Duration(seconds: 2),
+                                    child: Container(
+                                      height: 150,
+                                      alignment: Alignment.center,
+                                      child: RotatedBox(
+                                        quarterTurns: 1,
+                                        child: LinearProgressIndicator(
+                                          backgroundColor:
+                                              context.theme.backgroundColor,
+                                          valueColor: AlwaysStoppedAnimation<
+                                                  Color?>(
+                                              context.theme.backgroundColor),
+                                          value: animationControllerLine1.value,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  ///circle3
+                                  AnimatedPositioned(
+                                    top: circle1 ? 220 : 400,
+                                    duration: Duration(seconds: 2),
+                                    curve: Curves.easeInOut,
+                                    child: Container(
+                                      height: 10,
+                                      width: 10,
+                                      decoration: BoxDecoration(
+                                        color: context
+                                            .theme.textTheme.headline1?.color,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(5),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 50,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * .3,
+                              // color: Colors.blue,
+                              alignment: Alignment.center,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 120,
+                                    width:
+                                        MediaQuery.of(context).size.width * .3,
+                                    child: Stack(children: [
+                                      AnimatedPositioned(
+                                        curve: Curves.easeInOut,
+                                        duration: Duration(seconds: 2),
+                                        left: circle1
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .5,
+                                        child: AnimatedOpacity(
+                                          opacity: circle1 ? 1 : 0,
+                                          curve: Curves.easeInOut,
+                                          duration: Duration(seconds: 2),
+                                          child: Container(
+                                            height: 100,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .3,
+                                            // color: Colors.red,
+                                            padding: EdgeInsets.only(left: 5),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  'Industrial Trainee',
+                                                  textAlign: TextAlign.right,
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 15),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'Battery Low Interactive',
+                                                  textAlign: TextAlign.right,
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 13),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'November 2019 - December 2019',
+                                                  textAlign: TextAlign.right,
+                                                  style: context
+                                                      .textTheme.headline2
+                                                      ?.copyWith(fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                                  ),
+                                  SizedBox(
+                                    height: 120,
+                                  ),
+                                  Container(
+                                    height: 150,
+                                    width:
+                                        MediaQuery.of(context).size.width * .3,
+                                    child: Stack(children: [
+                                      AnimatedPositioned(
+                                        curve: Curves.easeInOut,
+                                        duration: Duration(seconds: 2),
+                                        left: circle1
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .5,
+                                        child: AnimatedOpacity(
+                                          opacity: circle1 ? 1 : 0,
+                                          curve: Curves.easeInOut,
+                                          duration: Duration(seconds: 2),
+                                          child: Container(
+                                            height: 150,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .3,
+                                            // color: Colors.red,
+                                            padding: EdgeInsets.only(left: 5),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  'Mobile Application Developer',
+                                                  textAlign: TextAlign.right,
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 15),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'BMS Systems',
+                                                  textAlign: TextAlign.right,
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 14),
+                                                ),
+                                                SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                  'October 2021 - November 2021',
+                                                  textAlign: TextAlign.right,
+                                                  style: context
+                                                      .textTheme.headline1
+                                                      ?.copyWith(fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        // second tab bar viiew widget
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -763,16 +1165,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ],
                             ),
                           ],
-                        ),
-
-                        // second tab bar viiew widget
-                        Container(
-                          color: Colors.pink,
-                          child: Center(
-                            child: Text(
-                              'Car',
-                            ),
-                          ),
                         ),
                       ],
                     ),
