@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({
@@ -7,91 +8,86 @@ class MenuDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Container(
-        color: Color(0xFF077bd7),
-        child: Padding(
+    return Container(
+      color: context.theme.scaffoldBackgroundColor,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ///home
+            InkWell(
+              onTap: () {},
+              child: Text(
+                'Home',
+                style: context.textTheme.headline1?.copyWith(
+                  fontSize: 18,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+              child: Divider(
+                color: context.theme.backgroundColor,
+                thickness: 2,
+              ),
+            ),
 
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              ///home
-              InkWell(
-                onTap: () {},
-                child: Text(
-                  'Home',
-                  style: TextStyle(color: Colors.white, fontSize: 22),
+            ///about
+            InkWell(
+              onTap: () {},
+              child: Text(
+                'About',
+                style: context.textTheme.headline1?.copyWith(
+                  fontSize: 18,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                child: Divider(
-                  color: Colors.blueGrey.shade400,
-                  thickness: 2,
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+              child: Divider(
+                color: context.theme.backgroundColor,
+                thickness: 2,
               ),
-              ///about
-              InkWell(
-                onTap: () {},
-                child: Text(
-                  'About',
-                  style: TextStyle(color: Colors.white, fontSize: 22),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                child: Divider(
-                  color: Colors.blueGrey.shade400,
-                  thickness: 2,
-                ),
-              ),
-              ///contact
-              InkWell(
-                onTap: () {},
-                child: Text(
-                  'Contact',
-                  style: TextStyle(color: Colors.white, fontSize: 22),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                child: Divider(
-                  color: Colors.blueGrey.shade400,
-                  thickness: 2,
-                ),
-              ),
-              ///profile
-              InkWell(
-                onTap: () {},
-                child: Text(
-                  'Profile',
-                  style: TextStyle(color: Colors.white, fontSize: 22),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
-                child: Divider(
-                  color: Colors.blueGrey.shade400,
-                  thickness: 2,
-                ),
-              ),
+            ),
 
-              Expanded(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Text(
-                    'Copyright © 2021 | DBestech',
-                    style: TextStyle(
-                      color: Colors.blueGrey.shade300,
-                      fontSize: 14,
-                    ),
-                  ),
+            ///contact
+            InkWell(
+              onTap: () {},
+              child: Text(
+                'Contact',
+                style: context.textTheme.headline1?.copyWith(
+                  fontSize: 18,
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+              child: Divider(
+                color: context.theme.backgroundColor,
+                thickness: 2,
+              ),
+            ),
+
+            ///profile
+            InkWell(
+              onTap: () {},
+              child: Text(
+                'Profile',
+                style: context.textTheme.headline1?.copyWith(
+                  fontSize: 18,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+              child: Divider(
+                color: context.theme.backgroundColor,
+                thickness: 1,
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 class ButtonElevated extends StatefulWidget {
   final String text;
   final Icon icons;
+  final Function ontap;
 
-  const ButtonElevated({Key? key, required this.text, required this.icons})
+  const ButtonElevated(
+      {Key? key, required this.text, required this.icons, required this.ontap})
       : super(key: key);
 
   @override
@@ -18,12 +20,12 @@ class _ButtonElevatedState extends State<ButtonElevated> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 120,
+      width: 130,
       height: 50.h,
       alignment: Alignment.center,
       child: ElevatedButton(
         style: context.theme.elevatedButtonTheme.style!.copyWith(),
-        onPressed: () {},
+        onPressed: () => widget.ontap(),
         onHover: (val) {
           setState(() {
             boxWidth = val;

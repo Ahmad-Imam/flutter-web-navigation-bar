@@ -35,6 +35,13 @@ dependencies:
   rive: ^0.8.1
   animated_text_kit: ^4.2.1
   blur: ^3.0.0
+  # pdfx: ^1.0.0
+  # flutter_cached_pdfview: ^0.4.1
+  # advance_pdf_viewer: ^2.0.1
+  pdf_render: ^1.0.23
+  url_launcher: ^6.0.20
+  flutter_slider_drawer: ^2.1.1
+
   # card_swiper: ^2.0.1
 
 dev_dependencies:
