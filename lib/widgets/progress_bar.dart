@@ -23,10 +23,12 @@ class ProgressbarAnimation extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    '${text}',
-                    style: context.textTheme.headline1
-                        ?.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+                  Expanded(
+                    child: Text(
+                      '${text}',
+                      style: context.textTheme.headline1
+                          ?.copyWith(fontSize: 14, fontWeight: FontWeight.w500),
+                    ),
                   ),
                   Text('${(gg * 100).toPrecision(0)}%'),
                 ],

@@ -38,7 +38,7 @@ dependencies:
   # pdfx: ^1.0.0
   # flutter_cached_pdfview: ^0.4.1
   # advance_pdf_viewer: ^2.0.1
-  pdf_render: ^1.0.23
+  # pdf_render: ^1.0.23
   url_launcher: ^6.0.20
   flutter_slider_drawer: ^2.1.1
 

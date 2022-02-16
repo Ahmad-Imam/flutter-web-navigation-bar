@@ -198,13 +198,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  pdf_render:
-    dependency: "direct main"
-    description:
-      name: pdf_render
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.23"
   petitparser:
     dependency: transitive
     description:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_nav/const.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class TopBarContents extends StatefulWidget {
@@ -22,20 +23,21 @@ class _TopBarContentsState extends State<TopBarContents> {
     false,
     false
   ];
-
+  bool themeMode = false;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     return Container(
-      color: Colors.white.withOpacity(0.5),
+      color: context.theme.scaffoldBackgroundColor,
       child: Padding(
         padding: EdgeInsets.all(20),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'Library',
+              'AI',
               style: TextStyle(
-                color: Color(0xFF077bd7),
+                color: context.theme.backgroundColor,
                 fontSize: 26,
                 fontFamily: 'Raleway',
                 fontWeight: FontWeight.w900,
@@ -45,10 +47,6 @@ class _TopBarContentsState extends State<TopBarContents> {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: screenSize.width / 4,
-                ),
-
                 ///home
                 SizedBox(width: screenSize.width / 15),
                 InkWell(
@@ -69,8 +67,8 @@ class _TopBarContentsState extends State<TopBarContents> {
                         'Home',
                         style: TextStyle(
                             color: _isHovering[0]
-                                ? Color(0xFF077bd7)
-                                : Color(0xFF077bd7),
+                                ? context.theme.primaryColor
+                                : context.theme.backgroundColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16),
                       ),
@@ -82,8 +80,8 @@ class _TopBarContentsState extends State<TopBarContents> {
                         visible: _isHovering[0],
                         child: Container(
                           height: 2,
-                          width: 20,
-                          color: Color(0xFF051441),
+                          width: 20.w,
+                          color: context.theme.backgroundColor,
                         ),
                       )
                     ],
@@ -112,8 +110,8 @@ class _TopBarContentsState extends State<TopBarContents> {
                         'About',
                         style: TextStyle(
                             color: _isHovering[1]
-                                ? Color(0xFF077bd7)
-                                : Color(0xFF077bd7),
+                                ? context.theme.primaryColor
+                                : context.theme.backgroundColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16),
                       ),
@@ -125,15 +123,15 @@ class _TopBarContentsState extends State<TopBarContents> {
                         visible: _isHovering[1],
                         child: Container(
                           height: 2,
-                          width: 20,
-                          color: Color(0xFF051441),
+                          width: 20.w,
+                          color: context.theme.backgroundColor,
                         ),
                       )
                     ],
                   ),
                 ),
 
-                ///contact
+                ///journey
                 SizedBox(width: screenSize.width / 45),
                 InkWell(
                   onHover: (value) {
@@ -146,11 +144,11 @@ class _TopBarContentsState extends State<TopBarContents> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Contact',
+                        'Journey',
                         style: TextStyle(
-                            color: _isHovering[0]
-                                ? Color(0xFF077bd7)
-                                : Color(0xFF077bd7),
+                            color: _isHovering[2]
+                                ? context.theme.primaryColor
+                                : context.theme.backgroundColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16),
                       ),
@@ -162,15 +160,15 @@ class _TopBarContentsState extends State<TopBarContents> {
                         visible: _isHovering[2],
                         child: Container(
                           height: 2,
-                          width: 20,
-                          color: Color(0xFF051441),
+                          width: 20.w,
+                          color: context.theme.backgroundColor,
                         ),
                       )
                     ],
                   ),
                 ),
 
-                ///Profile
+                ///skills
                 SizedBox(width: screenSize.width / 45),
                 InkWell(
                   onHover: (value) {
@@ -183,11 +181,11 @@ class _TopBarContentsState extends State<TopBarContents> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Profile',
+                        'Skills',
                         style: TextStyle(
-                            color: _isHovering[0]
-                                ? Color(0xFF077bd7)
-                                : Color(0xFF077bd7),
+                            color: _isHovering[3]
+                                ? context.theme.primaryColor
+                                : context.theme.backgroundColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 16),
                       ),
@@ -199,8 +197,81 @@ class _TopBarContentsState extends State<TopBarContents> {
                         visible: _isHovering[3],
                         child: Container(
                           height: 2,
-                          width: 20,
-                          color: Color(0xFF051441),
+                          width: 20.w,
+                          color: context.theme.backgroundColor,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+
+                ///projects
+                SizedBox(width: screenSize.width / 45),
+                InkWell(
+                  onHover: (value) {
+                    setState(() {
+                      value ? _isHovering[4] = true : _isHovering[4] = false;
+                    });
+                  },
+                  onTap: () {},
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Projects',
+                        style: TextStyle(
+                            color: _isHovering[4]
+                                ? context.theme.primaryColor
+                                : context.theme.backgroundColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Visibility(
+                        maintainAnimation: true,
+                        maintainState: true,
+                        maintainSize: true,
+                        visible: _isHovering[4],
+                        child: Container(
+                            height: 2,
+                            width: 20.w,
+                            color: context.theme.backgroundColor),
+                      )
+                    ],
+                  ),
+                ),
+
+                ///hobbies
+                SizedBox(width: screenSize.width / 45),
+                InkWell(
+                  onHover: (value) {
+                    setState(() {
+                      value ? _isHovering[5] = true : _isHovering[5] = false;
+                    });
+                  },
+                  onTap: () {},
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Hobby',
+                        style: TextStyle(
+                            color: _isHovering[5]
+                                ? context.theme.primaryColor
+                                : context.theme.backgroundColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                      SizedBox(height: 5),
+                      Visibility(
+                        maintainAnimation: true,
+                        maintainState: true,
+                        maintainSize: true,
+                        visible: _isHovering[5],
+                        child: Container(
+                          height: 2,
+                          width: 20.w,
+                          color: context.theme.backgroundColor,
                         ),
                       )
                     ],
@@ -208,8 +279,10 @@ class _TopBarContentsState extends State<TopBarContents> {
                 ),
               ],
             ),
-            Expanded(child: Container()),
-            Text('lol'),
+            Icon(
+              Icons.light_mode,
+              color: context.theme.backgroundColor,
+            ),
           ],
         ),
       ),
